@@ -290,7 +290,7 @@ video {
     .text {
         grid-column: 1 / -1;
         font-size: 18px;
-        line-height: 21px;
+        line-height: 19px;
         padding-bottom: 40px;
         max-width: none;
     }
@@ -298,6 +298,7 @@ video {
     .titel {
         grid-column: 1 / -1;
         padding-bottom: 20px;
+        line-height: 1.3%;
     }
 
     .infos {
