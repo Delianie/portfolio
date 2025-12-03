@@ -1,61 +1,55 @@
-/* ========= script.js ========= */
+/* ========= DATEN ========= */
 
-// Bilderliste MIT korrekten Projekt-Links
 const images = [
-    { src: "images-startseite/bild1.jpg", title: "Typografie aus Technik", subtitle: "FONTDESIGN | ILLUSTRATION | TYPOGRAFIE", link: "html-project/03_ilustrarionfont.html" },
-    { src: "images-startseite/bild2.jpg", title: "Intensität in der Tiefe", subtitle: "CORPORATE DESIGN | ILLUSTRATION", link: "html-project/06_bildwort.html" },
+    { src: "images-startseite/1.webp", title: "Typografie aus Technik", subtitle: "FONTDESIGN | ILLUSTRATION | TYPOGRAFIE", link: "html-project/03_ilustrarionfont.html" },
+
+    { src: "images-startseite/2.webp", title: "Intensität in der Tiefe", subtitle: "CORPORATE DESIGN | ILLUSTRATION", link: "html-project/06_bildwort.html" },
+
     { src: "images-startseite/2.mp4", title: "Aus dem Auge, aus dem Sinn?", subtitle: "POSTERDESIGN", link: "html-project/01_blickwechselplakat.html" },
+
     { src: "images-startseite/bild4.webp", title: "Kreislauf von Gegenständen", subtitle: "ZEITUNG | FOTOGRAFIE", link: "html-project/02_zeitung.html" },
-    { src: "images-startseite/bild5.jpg", title: "Delia Niederberger", subtitle: "SPORT | DESIGN | FAMILIE", link: "html-project/08_ich.html" },
-    { src: "images-startseite/5.mp4", title: "Versteckte Geräusche von London", subtitle: "EDITORIAL DESIGN", link: "html-project/04_london.html" },
-    { src: "images-startseite/bild7.webp", title: "Neuinterpretation der Schweizer Typografie", subtitle: "MOTION DESIGN | TYPOGRAFIE", link: "html-project/05_motiontype.html" },
-    { src: "images-startseite/bild8.jpg", title: "Siebdruck – Farben übereinander", subtitle: "PREPRESS | COLOR MANAGEMENT | POSTERDESIGN", link: "html-project/07_preepress.html" }
+
+    { src: "images-startseite/5.webp", title: "Delia Niederberger", subtitle: "SPORT | DESIGN | FAMILIE", link: "html-project/08_ich.html" },
+
+    { src: "images-startseite/bild6.webp", title: "Versteckte Geräusche von London", subtitle: "EDITORIAL DESIGN", link: "html-project/04_london.html" },
+
+    { src: "images-startseite/5.mp4", title: "Neuinterpretation der Schweizer Typografie", subtitle: "MOTION DESIGN | TYPOGRAFIE", link: "html-project/05_motiontype.html" },
+
+    { src: "images-startseite/7.webp", title: "Siebdruck – Farben übereinander", subtitle: "PREPRESS | COLOR MANAGEMENT | POSTERDESIGN", link: "html-project/07_preepress.html" }
 ];
 
+/* ========= ELEMENTE ========= */
+
 const track = document.getElementById("track");
-const title = document.getElementById("title");
-const subtitle = document.getElementById("subtitle");
+const titleEl = document.getElementById("title");
+const subtitleEl = document.getElementById("subtitle");
 
 const original = images.length;
 const totalLoops = 40;
-const fullList = [];
+const fullList = [...Array(totalLoops)].flatMap(() => images);
 
-// Liste vervielfachen für Endlosslider
-for (let i = 0; i < totalLoops; i++) fullList.push(...images);
+/* ========= MEDIEN ERZEUGEN ========= */
 
-/* ========= MEDIEN (BILDER + VIDEOS) ERZEUGEN ========= */
+fullList.forEach(item => {
+    const wrap = document.createElement("div");
+    wrap.className = "media-wrapper";
 
-// Schritt 1: Alles als <img> erzeugen (Slider braucht das)
-fullList.forEach(d => {
-    const el = document.createElement("img");
-    el.src = d.src;
-    el.dataset.src = d.src; // merken für Videocheck
-    track.appendChild(el);
-});
-
-// Schritt 2: Nachträglich <img> mit MP4 durch <video> ersetzen
-Array.from(track.children).forEach(child => {
-    const src = child.dataset.src;
-
-    if (src && src.endsWith(".mp4")) {
-        const video = document.createElement("video");
-
-        video.src = src;
-        video.autoplay = true;
-        video.loop = true;
-        video.muted = true;
-        video.playsInline = true;
-
-        // gleiche Dimensionen wie Bilder (damit Animation funktioniert)
-        video.className = child.className;
-        video.style.width = "100%";
-        video.style.height = "100%";
-        video.style.objectFit = "cover";
-
-        child.replaceWith(video);
+    if (item.src.endsWith(".mp4")) {
+        const v = document.createElement("video");
+        v.src = item.src;
+        v.autoplay = true;
+        v.loop = true;
+        v.muted = true;
+        v.playsInline = true;
+        wrap.appendChild(v);
+    } else {
+        const img = document.createElement("img");
+        img.src = item.src;
+        wrap.appendChild(img);
     }
-});
 
+    track.appendChild(wrap);
+});
 
 /* ========= SLIDER LOGIK ========= */
 
@@ -68,61 +62,68 @@ window.addEventListener("resize", () => {
 let pos = original * 10;
 let velocity = 0;
 
-function wrap() {
+/* ========= LOOP NACHLADEN ========= */
+
+function wrapAround() {
     const max = original * totalLoops;
     if (pos > max - original * 4) pos -= max / 2;
     if (pos < original * 4) pos += max / 2;
 }
 
-// Hover-Underline
-title.addEventListener("mouseenter", () => {
-    title.style.textDecoration = "underline";
-    title.style.textDecorationThickness = "1px";
-});
+/* ========= TEXT SYNCHRONISIEREN ========= */
 
-title.addEventListener("mouseleave", () => {
-    title.style.textDecoration = "none";
-});
-
-
-/* ========= TEXT UPDATE ========= */
 function updateText() {
-    const index = Math.floor(pos) % original;
-    const d = images[(index + original) % original];
-    title.textContent = d.title;
-    subtitle.textContent = d.subtitle;
-    title.href = d.link;
+    const media = track.children;
+    const center = window.innerWidth / 2;
+
+    let closest = 0;
+    let distMin = Infinity;
+
+    for (let i = 0; i < media.length; i++) {
+        const r = media[i].getBoundingClientRect();
+        const m = r.left + r.width / 2;
+        const d = Math.abs(center - m);
+
+        if (d < distMin) {
+            distMin = d;
+            closest = i;
+        }
+    }
+
+    const logical = ((closest % original) + original) % original;
+
+    const d = images[logical];
+    titleEl.textContent = d.title;
+    subtitleEl.textContent = d.subtitle;
+    titleEl.href = d.link;
 }
 
+/* ========= ZOOM ========= */
 
-/* ========= ZOOM-EFFEKT ========= */
 function updateScale() {
-    const mediaElements = track.children;
-    const screenCenter = window.innerWidth / 2;
+    const media = track.children;
+    const center = window.innerWidth / 2;
 
-    for (let media of mediaElements) {
-        const r = media.getBoundingClientRect();
-        const center = r.left + r.width / 2;
-        const dist = Math.abs(screenCenter - center);
-        const maxDist = screenCenter;
+    for (let m of media) {
+        const r = m.getBoundingClientRect();
+        const mid = r.left + r.width / 2;
+        const dist = Math.abs(center - mid);
+        const maxDist = center;
 
-        const minScale = 1.0;
-        const maxScale = 1.18;
         const t = Math.min(dist / maxDist, 1);
-        const scale = minScale + (maxScale - minScale) * (t * t);
+        const scale = 1 + (0.18 * (t * t));
 
-        media.style.transform = `scale(${scale})`;
+        m.style.transform = `scale(${scale})`;
     }
 }
 
+/* ========= ANIMATION ========= */
 
-/* ========= ANIMATION LOOP ========= */
 function animate() {
     pos += velocity;
     velocity *= 0.9;
-    if (Math.abs(velocity) < 0.0001) velocity = 0;
 
-    wrap();
+    wrapAround();
 
     track.style.transform = `translateX(${-pos * imgWidth}px)`;
 
@@ -133,8 +134,8 @@ function animate() {
 }
 animate();
 
+/* ========= INPUTS ========= */
 
-/* ========= MAUSWHEEL ========= */
 document.addEventListener("wheel", e => {
     e.preventDefault();
     const factor = window.innerWidth < 600 ? 1400 : 350;
@@ -143,12 +144,16 @@ document.addEventListener("wheel", e => {
     velocity = delta * 0.3;
 }, { passive: false });
 
+document.addEventListener("keydown", e => {
+    if (e.key === "ArrowLeft") velocity -= 1.5;
+    if (e.key === "ArrowRight") velocity += 1.5;
+});
 
-/* ========= TOUCH (MOBILE: TIKTOK-STYLE SWIPE) ========= */
+/* ========= TOUCH (MOBILE) ========= */
+
 let touchStartY = null;
 let touchCurrentY = null;
 let lastDelta = 0;
-const SWIPE_THRESHOLD = 50; // Pixel-Schwellwert für "richtigen" Swipe
 
 document.addEventListener("touchstart", e => {
     touchStartY = e.touches[0].clientY;
@@ -159,46 +164,30 @@ document.addEventListener("touchstart", e => {
 document.addEventListener("touchmove", e => {
     const y = e.touches[0].clientY;
 
-    // Auf Handy: TikTok-Style – nur Swipe messen, noch nicht verschieben
     if (window.innerWidth < 600) {
         touchCurrentY = y;
         e.preventDefault();
         return;
     }
 
-    // Fallback für grössere Touch-Devices: altes "freies" Scroll-Verhalten
-    if (touchStartY !== null) {
-        const dy = touchStartY - y;
-        touchStartY = y;
+    const dy = touchStartY - y;
+    touchStartY = y;
 
-        const factor = window.innerWidth < 600 ? 1400 : 350;
-        const delta = dy / factor;
-
-        pos += delta;
-        lastDelta = delta;
-    }
+    const factor = window.innerWidth < 600 ? 1400 : 350;
+    const delta = dy / factor;
+    pos += delta;
+    lastDelta = delta;
 
     e.preventDefault();
 }, { passive: false });
 
 document.addEventListener("touchend", () => {
     if (window.innerWidth < 600) {
-        // TikTok-Style: immer auf das nächste / vorherige Bild snappen
-        if (touchStartY !== null && touchCurrentY !== null) {
-            const dy = touchStartY - touchCurrentY;
-
-            if (Math.abs(dy) > SWIPE_THRESHOLD) {
-                const direction = dy > 0 ? 1 : -1; // hoch = nächstes Bild, runter = vorheriges
-                const target = Math.round(pos + direction);
-                velocity = (target - pos) * 0.35;
-            } else {
-                // Zu kleiner Swipe: wieder auf aktuelles Bild zurück-snappen
-                const target = Math.round(pos);
-                velocity = (target - pos) * 0.35;
-            }
-        }
+        const dy = touchStartY - touchCurrentY;
+        const direction = dy > 0 ? 1 : -1;
+        const target = Math.round(pos + direction);
+        velocity = (target - pos) * 0.35;
     } else {
-        // Grössere Devices behalten das weiche Inertial-Scroll
         velocity = lastDelta * 0.4;
     }
 
@@ -206,15 +195,3 @@ document.addEventListener("touchend", () => {
     touchStartY = null;
     touchCurrentY = null;
 }, { passive: false });
-
-
-/* ========= KEYBOARD ========= */
-
-const KEY_LEFT = 37;
-const KEY_RIGHT = 39;
-let keyPower = 1.5;
-
-document.addEventListener("keydown", (e) => {
-    if (e.keyCode === KEY_LEFT) velocity -= keyPower;
-    if (e.keyCode === KEY_RIGHT) velocity += keyPower;
-});

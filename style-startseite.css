@@ -1,85 +1,106 @@
-/* ========= style.css ========= */
+/* ========= BASIS ========= */
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  overflow: hidden;
-  width: 100vw;
-  height: 100vh;
-  background: black;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    background: black;
 }
 
+/* ========= SLIDER-CONTAINER ========= */
+
 .gallery-container {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
 }
 
 .track {
-  position: absolute;
-  display: flex;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  will-change: transform;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    height: 100vh;
+    will-change: transform;
 }
 
-.track img {
-  height: 100vh;
-  width: auto;
-  flex-shrink: 0;
-  object-fit: contain;
-  background: black;
-  transition: transform 0.25s ease-out;
+/* ========= EINZELNES ELEMENT (Bild + Video) ========= */
+
+.media-wrapper {
+    height: 100vh;     /* Höhe fix */
+    flex-shrink: 0;    /* NICHT zusammenschieben */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: black;  /* damit Ränder nicht weiss sind */
 }
+
+/* Medien behalten Format */
+.media-wrapper img,
+.media-wrapper video {
+    height: 100%;      /* Höhe fix */
+    width: auto;       /* Breite automatisch → korrektes Verhältnis */
+    object-fit: contain;
+}
+
+/* ========= TEXT-OVERLAY ========= */
 
 .overlay-wrapper {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: .4rem;
-  pointer-events: none;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .4rem;
+    pointer-events: none;
 }
 
 #title {
-  color: white;
-  font-family: "neue-haas-grotesk-display", sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  pointer-events: auto;
-  cursor: pointer;
-  position: relative;   /* <<< wichtig */
-  z-index: 9999;        /* <<< wichtig */
-  text-decoration: none;
+    color: white;
+    font-family: "neue-haas-grotesk-display", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    pointer-events: auto;
+    cursor: pointer;
+    z-index: 10;
+    text-decoration: none;
 }
 
 #subtitle {
-  color: white;
-  font-family: "Fragment Mono", monospace;
-  font-size: 15px;
-  pointer-events: none; /* <<< soll NICHT klickbar sein */
+    color: white;
+    font-family: "Fragment Mono", monospace;
+    font-size: 15px;
+    pointer-events: none;
 }
 
 .hint {
-  position: absolute;
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  color: white;
-  font-family: "Fragment Mono", monospace;
-  font-size: 15px;
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-family: "Fragment Mono", monospace;
+    font-size: 15px;
 }
 
-@media(max-width:600px) {
-  .overlay-wrapper {
-    flex-direction: column;
-    text-align: center;
-  }
+/* ========= MOBILE ========= */
+
+@media (max-width: 600px) {
+
+    .media-wrapper {
+        width: 100vw;
+        /* mobil: 1 Medium pro Ansicht */
+    }
+
+    .overlay-wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
 }
