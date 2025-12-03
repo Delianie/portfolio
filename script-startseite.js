@@ -144,33 +144,67 @@ document.addEventListener("wheel", e => {
 }, { passive: false });
 
 
-/* ========= TOUCH ========= */
-let touchY = null;
+/* ========= TOUCH (MOBILE: TIKTOK-STYLE SWIPE) ========= */
+let touchStartY = null;
+let touchCurrentY = null;
 let lastDelta = 0;
+const SWIPE_THRESHOLD = 50; // Pixel-Schwellwert für "richtigen" Swipe
 
 document.addEventListener("touchstart", e => {
-    touchY = e.touches[0].clientY;
+    touchStartY = e.touches[0].clientY;
+    touchCurrentY = touchStartY;
     velocity = 0;
 }, { passive: false });
 
 document.addEventListener("touchmove", e => {
     const y = e.touches[0].clientY;
-    const dy = touchY - y;
-    touchY = y;
 
-    const factor = window.innerWidth < 600 ? 1400 : 350;
-    const delta = dy / factor;
+    // Auf Handy: TikTok-Style – nur Swipe messen, noch nicht verschieben
+    if (window.innerWidth < 600) {
+        touchCurrentY = y;
+        e.preventDefault();
+        return;
+    }
 
-    pos += delta;
-    lastDelta = delta;
+    // Fallback für grössere Touch-Devices: altes "freies" Scroll-Verhalten
+    if (touchStartY !== null) {
+        const dy = touchStartY - y;
+        touchStartY = y;
+
+        const factor = window.innerWidth < 600 ? 1400 : 350;
+        const delta = dy / factor;
+
+        pos += delta;
+        lastDelta = delta;
+    }
 
     e.preventDefault();
 }, { passive: false });
 
 document.addEventListener("touchend", () => {
-    velocity = lastDelta * 0.4;
+    if (window.innerWidth < 600) {
+        // TikTok-Style: immer auf das nächste / vorherige Bild snappen
+        if (touchStartY !== null && touchCurrentY !== null) {
+            const dy = touchStartY - touchCurrentY;
+
+            if (Math.abs(dy) > SWIPE_THRESHOLD) {
+                const direction = dy > 0 ? 1 : -1; // hoch = nächstes Bild, runter = vorheriges
+                const target = Math.round(pos + direction);
+                velocity = (target - pos) * 0.35;
+            } else {
+                // Zu kleiner Swipe: wieder auf aktuelles Bild zurück-snappen
+                const target = Math.round(pos);
+                velocity = (target - pos) * 0.35;
+            }
+        }
+    } else {
+        // Grössere Devices behalten das weiche Inertial-Scroll
+        velocity = lastDelta * 0.4;
+    }
+
     lastDelta = 0;
-    touchY = null;
+    touchStartY = null;
+    touchCurrentY = null;
 }, { passive: false });
 
 
