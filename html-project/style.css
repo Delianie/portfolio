@@ -1,0 +1,329 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+img,
+video {
+    width: 100%;
+    display: block;
+}
+
+
+/* -------------------------------------- */
+/*  FONTS                                 */
+/* -------------------------------------- */
+
+
+
+/* -------------------------------------- */
+/*  HEADER (Punkt + DE/EN)                */
+/* -------------------------------------- */
+.header {}
+
+.menu {
+    padding-top: 40px;
+    padding-left: 80px;
+    padding-right: 80px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+.dot {
+    width: 20px;
+    height: 20px;
+    background-color: black;
+    border-radius: 50%;
+    
+}
+
+.text-lang {
+    font-family: 'Fragment Mono', monospace;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+
+/* -------------------------------------- */
+/* 12 SPALTEN GRID                        */
+/* -------------------------------------- */
+.layout {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 15px;
+    grid-template-rows: min-content auto min-content;
+
+    padding-top: 120px;
+    padding-left: 80px;
+    padding-right: 80px;
+
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    background-color: #F2F2EE;
+
+    min-height: 100vh;
+}
+
+
+/* -------------------------------------- */
+/*  TITEL                                 */
+/* -------------------------------------- */
+.titel {
+    grid-column: 1 / 8;
+    font-family: "neue-haas-grotesk-display", sans-serif;
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 50px;
+    padding-bottom: 20px;
+}
+
+
+/* -------------------------------------- */
+/*  TEXT                                   */
+/* -------------------------------------- */
+.text {
+    grid-column: 1 / 6;
+    font-family: "neue-haas-grotesk-display", sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 34px;
+    max-width: 600px;
+    
+
+}
+
+
+
+/* -------------------------------------- */
+/*  INFOS                                  */
+/* -------------------------------------- */
+.infos {
+    grid-column: 1 / span 2;
+    font-family: "Fragment Mono", monospace;
+    font-size: 11px;
+    line-height: 15px;
+    letter-spacing: 0.3px;
+    margin-bottom: 80px;
+
+}
+
+
+
+/* -------------------------------------- */
+/*  BILD RECHTS                            */
+/* -------------------------------------- */
+
+
+.rechts-bild {
+    grid-column: 8 / 13;
+    grid-row: 1 / span 3;
+}
+
+
+/* -------------------------------------- */
+/*  ERSTES BILD MIT VOLLER BREITE          */
+/* -------------------------------------- */
+.bild-breit {
+    display: block;
+    width: 100%;
+    position: relative;
+    z-index: 3;
+    background-color: white;
+}
+
+
+
+
+/* -------------------------------------- */
+/*  RASTER FÜR DIE BILDER                  */
+/* -------------------------------------- */
+.images {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 15px 15px;
+    z-index: 3;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    padding: 15px 80px 0 80px;
+}
+
+.images__image-1-8 {
+    grid-column: 1 / 8;
+}
+
+.images__image-5-13 {
+    grid-column: 5 / 13;
+}
+
+.images__image-1-7 {
+    grid-column: 1 / 7;
+}
+
+.images__image-7-13 {
+    grid-column: 7 / 13;
+}
+
+.images__image-1-13 {
+    grid-column: 1 / 13;
+}
+
+
+
+
+/* End Section (volle Seite nach den Bildern) */
+.end-section {
+    height: 100vh;
+    width: 100%;
+    background-color: white;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    z-index: 5;
+}
+
+/* ZENTRIERTER TEXT OBEN */
+.end-section__center {
+    font-family: "Fragment Mono", monospace;
+    font-size: 15px;
+    color: black;
+    letter-spacing: 0.8px;
+}
+
+/* GROSSER TAG UNTEN */
+.end-section__tag {
+    position: absolute;
+    bottom: 40px;
+
+    padding-left: 80px;
+    padding-right: 80px;
+
+    font-family: "neue-haas-grotesk-display", sans-serif;
+    font-size: 13.8vw;
+    font-weight: 1000;
+    /* BLACK weight */
+    line-height: 0.85;
+
+    color: black;
+    text-align: center;
+    text-decoration: none;
+
+}
+
+
+.end-section__tag:hover {
+    color: #888;
+    /* Farbe beim Hover */
+}
+
+@media (max-width: 700px) {
+    .images {
+        grid-template-columns: 1fr;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .images>* {
+        grid-column: 1 / -1;
+    }
+
+    .menu {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .bild-breit {
+        /* margin-top: -60px; */
+    }
+}
+
+/* -------------------------------------- */
+/*  RESPONSIVE ANPASSUNGEN                */
+/* -------------------------------------- */
+
+/* Wenn das Fenster kleiner wird → Text bis Spalte 8 ausdehnen */
+@media (max-width: 1200px) {
+    .text {
+        grid-column: 1 / 8;
+        max-width: none;
+    }
+
+    .infos {
+        grid-column: 1 / 3;
+        margin-bottom: 80px; /* Abstand bleibt fix */
+    }
+}
+
+/* Wenn es so eng wird, dass das Bild stört → Bild ausblenden */
+@media (max-width: 1000px) {
+    .rechts-bild {
+        display: none;
+    }
+
+    .text {
+        grid-column: 1 / 9; /* noch etwas breiter */
+    }
+}
+
+/* Handy Layout */
+@media (max-width: 900px) {
+
+    .text {
+        grid-column: 1 / -1;
+        font-size: 18px;
+        line-height: 21px;
+        padding-bottom: 40px;
+        max-width: none;
+    }
+
+    .titel {
+        grid-column: 1 / -1;
+        padding-bottom: 20px;
+    }
+
+    .infos {
+        grid-column: 1 / -1;
+        margin-bottom: 40px;
+    }
+
+    .layout {
+        padding-left: 20px;
+        padding-right: 20px;
+        column-gap: 10px;
+    }
+
+    .rechts-bild {
+        display: none;
+    }
+
+    .layout {
+        padding-top: 80px;
+    }
+}
+
+/* Sehr kleine Screens */
+@media (max-width: 600px) {
+    .text {
+        font-size: 18px;
+        line-height: 26px;
+    }
+}
