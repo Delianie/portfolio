@@ -7,7 +7,7 @@ const images = [
     { src: "images-startseite/2.mp4", title: "Aus dem Auge, aus dem Sinn?", subtitle: "POSTERDESIGN", link: "html-project/01_blickwechselplakat.html" },
     { src: "images-startseite/bild4.webp", title: "Kreislauf von Gegenständen", subtitle: "ZEITUNG | FOTOGRAFIE", link: "html-project/02_zeitung.html" },
     { src: "images-startseite/bild5.jpg", title: "Delia Niederberger", subtitle: "SPORT | DESIGN | FAMILIE", link: "html-project/08_ich.html" },
-    { src: "images-startseite/bild6.jpg", title: "Versteckte Geräusche von London", subtitle: "EDITORIAL DESIGN", link: "html-project/04_london.html" },
+    { src: "images-startseite/5.mp4", title: "Versteckte Geräusche von London", subtitle: "EDITORIAL DESIGN", link: "html-project/04_london.html" },
     { src: "images-startseite/bild7.webp", title: "Neuinterpretation der Schweizer Typografie", subtitle: "MOTION DESIGN | TYPOGRAFIE", link: "html-project/05_motiontype.html" },
     { src: "images-startseite/bild8.jpg", title: "Siebdruck – Farben übereinander", subtitle: "PREPRESS | COLOR MANAGEMENT | POSTERDESIGN", link: "html-project/07_preepress.html" }
 ];
