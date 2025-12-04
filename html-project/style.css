@@ -323,14 +323,13 @@ video {
         grid-column: 1 / -1;
         font-size: 18px;
         line-height: 20px;
-        padding-bottom: 40px;
         max-width: none;
     }
 
     .titel {
         grid-column: 1 / -1;
         padding-bottom: 20px;
-        padding-top: 20px;
+        padding-top: 10px;
         font-size: 60px;
         line-height: 50px;
 
