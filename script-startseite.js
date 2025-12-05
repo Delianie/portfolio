@@ -5,18 +5,11 @@ const images = [
 
 
     { src: "images-startseite/neu/1.webp", title: "Intensität in der Tiefe", link: "html-project/06_bildwort.html" },
-
     { src: "images-startseite/neu/7.webp", title: "Aus dem Auge, aus dem Sinn?", link: "html-project/01_blickwechselplakat.html" },
-
     { src: "images-startseite/neu/5.webp", title: "Typografie aus Technik", link: "html-project/03_ilustrarionfont.html" },
-
-
-    { src: "images-startseite/neu/6.webp", title: "Musik in Plakat", link: "html-project/02_zeitung.html" },
-
     { src: "images-startseite/neu/2.webp", title: "Portfolio von Delia Niederberger", link: "html-project/08_ich.html" },
-
+    { src: "images-startseite/neu/6.webp", title: "Plakat hören", link: "html-project/02_zeitung.html" },
     { src: "images-startseite/neu/3.webp", title: "Versteckte Geräusche von London", link: "html-project/04_london.html" },
-
     { src: "images-startseite/neu/4.webp", title: "Neuinterpretation der Schweizer Typografie", link: "html-project/05_motiontype.html" },
 
 
