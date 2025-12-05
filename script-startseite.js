@@ -38,6 +38,10 @@ fullList.forEach(item => {
     const wrap = document.createElement("div");
     wrap.className = "media-wrapper";
 
+    // LINK ERSTELLEN
+    const a = document.createElement("a");
+    a.href = item.link;
+
     if (item.src.endsWith(".mp4")) {
         const v = document.createElement("video");
         v.src = item.src;
@@ -45,13 +49,14 @@ fullList.forEach(item => {
         v.loop = true;
         v.muted = true;
         v.playsInline = true;
-        wrap.appendChild(v);
+        a.appendChild(v);
     } else {
         const img = document.createElement("img");
         img.src = item.src;
-        wrap.appendChild(img);
+        a.appendChild(img);
     }
 
+    wrap.appendChild(a);
     track.appendChild(wrap);
 });
 
