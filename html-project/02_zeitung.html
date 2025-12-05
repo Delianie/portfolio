@@ -21,7 +21,9 @@
 <body>
     <div class="menu">
         <a href="../index.html" class="dot"></a>
-        <div class="text-lang">DE / EN</div>
+        <div class="text-lang" id="toggle-dark">
+            DARK / LIGHT
+        </div>
     </div>
 
     <div class="layout">
@@ -41,14 +43,12 @@
         </div>
 
         <div class="infos">
-            Hidden Sounds of London<br>
+            Masterabschluss Konserte<br>
             2025<br><br>
 
             EDITORIAL / FOTOGRAFIE / TEXTING<br><br>
 
             Dozent*innen:<br>
-            / Markus Wiki<br>
-            / Silvio Waser<br>
             / Valeria Bongini<br>
             / Siiri Tännler<br><br>
 
@@ -57,11 +57,11 @@
 
         <div class="rechts-bild">
             <video class="images__image-1-5" autoplay loop muted>
-            <source src="../imgs/master/Niederberger-Delia-MAK.mp4" type="video/mp4">
-        </video>
+                <source src="../imgs/master/Niederberger-Delia-MAK.mp4" type="video/mp4">
+            </video>
         </div>
 
-        
+
 
 
     </div>
@@ -86,12 +86,16 @@
 
     </div>
 
-    <div class="end-section">
-        <div class="end-section__center">SEE OTHER WORKS</div>
-        <a href="https://instagram.com/d.nie.graphic" target="_blank" class="end-section__tag">@d.nie.graphic</a>
-    </div>
+   <div class="end-section">
+     <a href="../index.html" class="end-section__center">SEE OTHER WORKS</a>
+    <a href="https://instagram.com/d.nie.graphic" target="_blank" class="end-section__tag">@d.nie.graphic</a>
+</div>
 
+<script>
+document.getElementById("toggle-dark").addEventListener("click", function() {
+    document.body.classList.toggle("dark-mode");
+});
+</script>
 
 </body>
-
 </html>

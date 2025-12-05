@@ -3,23 +3,23 @@
 const images = [
 
 
-    
-    { src: "images-startseite/neu/1.webp", title: "Intensität in der Tiefe", subtitle: "LOGODESIGN | BRANDING", link: "html-project/06_bildwort.html" },
 
-    { src: "images-startseite/neu/7.webp", title: "Aus dem Auge, aus dem Sinn?", subtitle: "POSTERDESIGN | EDITORIAL DESIGN | MOTION DESIGN", link: "html-project/01_blickwechselplakat.html" },
+    { src: "images-startseite/neu/1.webp", title: "Intensität in der Tiefe", link: "html-project/06_bildwort.html" },
 
-    { src: "images-startseite/neu/5.webp", title: "Typografie aus Technik", subtitle: "DECONSTRUCTION | TECH ILLUSTRATION | TYPE DESIGN", link: "html-project/03_ilustrarionfont.html" },
+    { src: "images-startseite/neu/7.webp", title: "Aus dem Auge, aus dem Sinn?", link: "html-project/01_blickwechselplakat.html" },
+
+    { src: "images-startseite/neu/5.webp", title: "Typografie aus Technik", link: "html-project/03_ilustrarionfont.html" },
 
 
-    { src: "images-startseite/neu/6.webp", title: "Musik in Plakat", subtitle: "POSTERDESIGN | MOTION DESIGN", link: "html-project/02_zeitung.html" },
+    { src: "images-startseite/neu/6.webp", title: "Musik in Plakat", link: "html-project/02_zeitung.html" },
 
-    { src: "images-startseite/neu/2.webp", title: "Delia Niederberger", subtitle: "PORTFOLIO", link: "html-project/08_ich.html" },
+    { src: "images-startseite/neu/2.webp", title: "Portfolio von Delia Niederberger", link: "html-project/08_ich.html" },
 
-    { src: "images-startseite/neu/3.webp", title: "Versteckte Geräusche von London", subtitle: "LAYOUT | EDITORIAL DESIGN | TYPOGRAFIE", link: "html-project/04_london.html" },
+    { src: "images-startseite/neu/3.webp", title: "Versteckte Geräusche von London", link: "html-project/04_london.html" },
 
-    { src: "images-startseite/neu/4.webp", title: "Neuinterpretation der Schweizer Typografie", subtitle: "MOTION DESIGN | TYPOGRAFIE", link: "html-project/05_motiontype.html" },
+    { src: "images-startseite/neu/4.webp", title: "Neuinterpretation der Schweizer Typografie", link: "html-project/05_motiontype.html" },
 
-    
+
 ];
 
 /* ========= ELEMENTE ========= */
@@ -219,3 +219,15 @@ function moveBy(direction) {
     velocity += (target - pos) * 0.35;
     // wenn es zu schnell/langsam ist: 0.35 kleiner/grösser machen
 }
+
+
+/* ========= DARK MODE TOGGLE ========= */
+
+document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById("toggle-dark");
+    if (!toggle) return;
+
+    toggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+    });
+});
