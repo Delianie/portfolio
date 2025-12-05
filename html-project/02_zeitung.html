@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
 
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,19 +17,21 @@
     <title>Layout</title>
 </head>
 
-<body>
+<body class="normal-mode">
+
     <div class="menu">
         <a href="../index.html" class="dot"></a>
-        <div class="text-lang" id="toggle-dark">
-            DARK / LIGHT
+
+        <div class="menu-right">
+            <div class="text-lang" id="toggle-lang">DE/EN</div>
+            <div class="mode" id="toggle-dark">MODE</div>
+            <a href="../html-project/08_ich.html" class="about">ABOUT</a>
         </div>
     </div>
 
     <div class="layout">
 
-        <div class="titel">
-            Musik sehen
-        </div>
+        <div class="titel">Musik sehen</div>
 
         <div class="text">
             Wie kann man Musik sichtbar machen? Mein Projekt begann mit einfachen Experimenten: analog auf Papier,
@@ -40,14 +41,13 @@
             Entstanden ist es aus analogen Scans von Milchpapier, die ich übereinanderlege und digital weiterbearbeite.
             Dazu kommt eine kurze Animation, die die Idee der Bewegung ergänzt. Der Schwarz-Weiss-Look konzentriert
             alles auf Formen und Abläufe und zeigt, wie Musik als Bewegung im Bild erfahrbar wird.
-
         </div>
 
         <div class="infos">
             Masterabschlusskonzerte HSLU<br>
             2025<br><br>
 
-        POSTER DESIGN / EXPERIMENT / MOTION<br><br>
+            POSTER DESIGN / EXPERIMENT / MOTION<br><br>
 
             Dozent*innen:<br>
             / Flückiger Kaspar <br>
@@ -63,29 +63,23 @@
             </video>
         </div>
 
-
-
-
     </div>
 
     <video class="bild-breit" autoplay loop muted>
         <source src="../imgs/master/MAK_MakingOf_2025.mp4">
     </video>
 
-
     <div class="images">
-
         <video class="images__image-1-5" autoplay loop muted>
             <source src="../imgs/master/Niederberger-Delia-MAK.mp4" type="video/mp4">
         </video>
+
         <img class="images__image-7-13" src="../imgs/master/1.webp" alt="">
         <img class="images__image-1-7" src="../imgs/master/2.webp" alt="">
         <video class="images__image-7-13" autoplay loop muted>
             <source src="../imgs/master/2.mp4" type="video/mp4">
         </video>
-
-        <img class="images__image-7-13" src="../imgs/master/3.webp" alt="">
-
+        <img class="images__image-7-13" src="../imgs/master/Delia_4.jpg" alt="">
     </div>
 
     <div class="end-section">
@@ -93,12 +87,16 @@
         <a href="https://instagram.com/d.nie.graphic" target="_blank" class="end-section__tag">@d.nie.graphic</a>
     </div>
 
-    <script>
-        document.getElementById("toggle-dark").addEventListener("click", function () {
-            document.body.classList.toggle("dark-mode");
-        });
-    </script>
+    
+
+    <!-- ⭐ SCAN-LINIEN (GLOBAL FÜR VECTOR MODE) -->
+    <div id="line-x"></div>
+    <div id="line-y"></div>
+    <div id="mouse-coords"></div>
+
+    
+    <!-- ⭐ EXTERNES SCRIPT (MODE + SCANLINES) -->
+    <script src="../script-startseite.js"></script>
 
 </body>
-
 </html>

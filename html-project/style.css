@@ -26,6 +26,139 @@ video {
 /* -------------------------------------- */
 /*  HEADER (Punkt + DE/EN)                */
 /* -------------------------------------- */
+/* -----------------------
+   MODE 1: NORMAL (default)
+--------------------------*/
+body.normal-mode {
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+/* -----------------------
+   MODE 2: DARK
+--------------------------*/
+body.dark-mode {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+/* -----------------------
+   MODE 3: VECTOR MODE
+--------------------------*/
+body.vector-mode {
+    background-color: #ffffff;
+    color: #000000;
+
+    background-image:
+        linear-gradient(to right, rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+
+    font-family: 'Fragment Mono', monospace;
+}
+
+/* Menü-Elemente technisch */
+body.vector-mode .menu-right .mode,
+body.vector-mode .menu-right .about,
+body.vector-mode .menu-right .text-lang {
+    border: 1px solid #000;
+    padding: 4px 8px;
+    font-family: 'Fragment Mono', monospace !important;
+    font-size: 1.2rem;
+    /* gleiche Schriftgröße */
+    line-height: 1.6rem;
+    letter-spacing: -0.5px;
+}
+
+
+body.vector-mode .images,body.vector-mode .end-section,body.vector-mode .layout {
+    background-color: #fff;
+    background-image:
+        linear-gradient(to right, rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+body.vector-mode .dot {
+    border-radius: 0;
+    outline: 1px solid #000;
+    background-color: #fff;
+}
+
+/* Bildrahmen */
+body.vector-mode img,
+body.vector-mode video {
+    outline: 1px solid #000;
+    padding: 6px;
+    background-color: #fff;
+    filter: grayscale(100%) contrast(120%);
+}
+
+
+body.vector-mode .titel,
+body.vector-mode .text,
+body.vector-mode .infos {
+    font-family: 'Fragment Mono', monospace !important;
+    font-size: 1.2rem;
+    /* gleiche Schriftgröße */
+    line-height: 1.6rem;
+    letter-spacing: -0.5px;
+    /* macht’s noch technischer */
+    grid-column: 1 / 6;
+}
+
+
+/* ----------------------------
+   SCANLINES (X and Y)
+-----------------------------*/
+#line-x,
+#line-y {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    pointer-events: none;
+    z-index: 9999;
+    display: none;
+}
+
+#line-x {
+    height: 1px;
+    width: 100%;
+    left: 0;
+}
+
+#line-y {
+    width: 1px;
+    height: 100%;
+    top: 0;
+}
+
+/* Nur im Vector Mode sichtbar */
+body.vector-mode #line-x,
+body.vector-mode #line-y {
+    display: block;
+}
+
+
+/* Koordinatenanzeige */
+#mouse-coords {
+    position: fixed;
+    pointer-events: none;
+    font-family: 'Fragment Mono', monospace;
+    font-size: 12px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #000;
+    padding: 4px 6px;
+    border: 1px solid #000;
+    z-index: 99999;
+    display: none;
+    /* nur im Vector Mode sichtbar */
+}
+
+/* Nur im Vektor-Modus anzeigen */
+body.vector-mode #mouse-coords {
+    display: block;
+}
+
 
 
 .menu {
@@ -51,13 +184,46 @@ video {
 
 }
 
-.text-lang {
-    font-family: 'Fragment Mono', monospace;
-    font-size: 15px;
-    font-weight: 400;
-    color: #1a1a1a;
+.menu-right {
+    margin-left: auto;
+    display: flex;
+    gap: 30px;
+    /* Abstand zwischen ABOUT – MODE – DE/EN */
 }
 
+.about {
+    font-family: 'Fragment Mono', monospace;
+    font-size: 1.1741vh;
+    font-weight: 500;
+    line-height: 1.3698vh;
+    color: #1a1a1a;
+    text-decoration: none;
+    text-align: right;
+
+
+}
+
+.text-lang {
+    font-family: 'Fragment Mono', monospace;
+    font-size: 1.1741vh;
+    font-weight: 500;
+    line-height: 1.3698vh;
+    color: #1a1a1a;
+    text-decoration: none;
+    text-align: right;
+
+}
+
+.mode {
+    font-family: 'Fragment Mono', monospace;
+    font-size: 1.1741vh;
+    font-weight: 500;
+    line-height: 1.3698vh;
+    color: #1a1a1a;
+    text-decoration: none;
+    text-align: right;
+
+}
 
 /* -------------------------------------- */
 /* 12 SPALTEN GRID                        */
@@ -178,6 +344,7 @@ video {
 .dark-mode * {
     color: #e2e2e2 !important;
 }
+
 /* Bilder bleiben normal */
 
 
@@ -188,9 +355,11 @@ video {
 
 
 .rechts-bild {
-grid-column: 9 / 12;
-    grid-row: 1 / 13;        /* WICHTIG: über Titel + Text/Infos */
-    align-self: stretch;    /* füllt die volle Höhe */
+    grid-column: 9 / 12;
+    grid-row: 1 / 13;
+    /* WICHTIG: über Titel + Text/Infos */
+    align-self: stretch;
+    /* füllt die volle Höhe */
 }
 
 
@@ -292,6 +461,19 @@ grid-column: 9 / 12;
     text-decoration: none;
 }
 
+.end-section__me {
+    font-family: "neue-haas-grotesk-display", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 19.7px;
+    max-width: 600px;
+    grid-row: auto;
+    color: #1a1a1a;
+    padding: 40px;
+    text-decoration: none;
+    text-align: center;
+}
+
 /* GROSSER TAG UNTEN */
 .end-section__tag {
     position: absolute;
@@ -335,82 +517,82 @@ grid-column: 9 / 12;
     }
 
 
-   
-/* -------------------------------------- */
-/*  RESPONSIVE ANPASSUNGEN                */
-/* -------------------------------------- */
 
-/* Wenn das Fenster kleiner wird → Text bis Spalte 8 ausdehnen */
-@media (max-width: 1200px) {
-    .text {
-        grid-column: 1 / 8;
-        max-width: none;
+    /* -------------------------------------- */
+    /*  RESPONSIVE ANPASSUNGEN                */
+    /* -------------------------------------- */
+
+    /* Wenn das Fenster kleiner wird → Text bis Spalte 8 ausdehnen */
+    @media (max-width: 1200px) {
+        .text {
+            grid-column: 1 / 8;
+            max-width: none;
+        }
+
+        .infos {
+            grid-column: 1 / 5;
+            margin-bottom: 80px;
+            /* Abstand bleibt fix */
+        }
     }
 
-    .infos {
-        grid-column: 1 / 5;
-        margin-bottom: 80px;
-        /* Abstand bleibt fix */
+    /* Wenn es so eng wird, dass das Bild stört → Bild ausblenden */
+    @media (max-width: 1000px) {
+        .rechts-bild {
+            display: none;
+        }
+
+        .text {
+            grid-column: 1 / 9;
+            /* noch etwas breiter */
+        }
+    }
+
+    /* Handy Layout */
+    @media (max-width: 900px) {
+
+        .text {
+            grid-column: 1 / -1;
+            font-size: 18px;
+            line-height: 16px;
+            max-width: none;
+        }
+
+        .titel {
+            grid-column: 1 / -1;
+            padding-bottom: 20px;
+            padding-top: 10px;
+            font-size: 60px;
+            line-height: 50px;
+        }
+
+        .infos {
+            grid-column: 1 / -1;
+            align-self: end;
+            margin-top: auto;
+        }
+
+        .layout {
+            padding-left: 20px;
+            padding-right: 20px;
+            column-gap: 10px;
+            padding-top: 80px;
+        }
+
+        .rechts-bild {
+            display: none;
+        }
+
+        .layout {
+            padding-top: 80px;
+        }
+    }
+
+    /* Sehr kleine Screens */
+    @media (max-width: 600px) {
+        .text {
+            font-size: 18px;
+            line-height: 26px;
+        }
     }
 }
-
-/* Wenn es so eng wird, dass das Bild stört → Bild ausblenden */
-@media (max-width: 1000px) {
-    .rechts-bild {
-        display: none;
-    }
-
-    .text {
-        grid-column: 1 / 9;
-        /* noch etwas breiter */
-    }
-}
-
-/* Handy Layout */
-@media (max-width: 900px) {
-
-    .text {
-        grid-column: 1 / -1;
-        font-size: 18px;
-        line-height: 16px;
-        max-width: none;
-    }
-
-    .titel {
-        grid-column: 1 / -1;
-        padding-bottom: 20px;
-        padding-top: 10px;
-        font-size: 60px;
-        line-height: 50px;
-    }
-
-    .infos {
-        grid-column: 1 / -1;
-        align-self: end;
-        margin-top: auto;
-    }
-
-    .layout {
-        padding-left: 20px;
-        padding-right: 20px;
-        column-gap: 10px;
-        padding-top: 80px;
-    }
-
-    .rechts-bild {
-        display: none;
-    }
-
-    .layout {
-        padding-top: 80px;
-    }
-}
-
-/* Sehr kleine Screens */
-@media (max-width: 600px) {
-    .text {
-        font-size: 18px;
-        line-height: 26px;
-    }
-}
-}   

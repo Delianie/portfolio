@@ -18,10 +18,16 @@
     <title>Layout</title>
 </head>
 
-<body>
+<body class="normal-mode">
+
     <div class="menu">
         <a href="../index.html" class="dot"></a>
-        <div class="text-lang">DE / EN</div>
+
+        <div class="menu-right">
+            <div class="text-lang" id="toggle-lang">DE/EN</div>
+            <div class="mode" id="toggle-dark">MODE</div>
+            <a href="../html-project/08_ich.html" class="about">ABOUT</a>
+        </div>
     </div>
 
     <div class="layout">
@@ -31,7 +37,16 @@
         </div>
 
         <div class="text">
-            Hey, ich bin Delia Niederberger und bin eine Fachklässlerin!<br><br>
+            Hey, ich bin Delia, 2008 in der Schweiz geboren und eine angehende Grafikerin, die sich von Sport, Natur und
+            Zahlen inspirieren lässt.
+            Ich liebe Design mit klaren Systemen und logischen Strukturen – von harmonischen Verhältnissen bis zu
+            präzise aufgebauten Animationen.
+
+            Besonders fasziniert mich, wie Gestaltung unseren Alltag ganz unbewusst formt und beeinflusst. Ideen visuell
+            umzusetzen, Lösungen zu finden und dabei Ästhetik mit Funktion zu verbinden, macht für mich gutes Design
+            aus.
+
+            Wenn du Fragen oder Anliegen hast, kannst du mir gerne eine Mail schreiben :) <br><br>
 
 
         </div>
@@ -47,9 +62,8 @@
             Visual Studio Code<br>
             After Effects<br><br>
             Sprachen:<br>
-            Schweizerdeutsch<br>
+            Schweizerdeutsch / Deutsch<br>
             Muttersprache<br>
-            Deutsch<br>p
             Muttersprache<br>
             Englisch<br>
             B2<br>
@@ -76,6 +90,15 @@
         <a href="https://instagram.com/d.nie.graphic" target="_blank" class="end-section__tag">@d.nie.graphic</a>
     </div>
 
+
+    <!-- ⭐ SCAN-LINIEN (GLOBAL FÜR VECTOR MODE) -->
+    <div id="line-x"></div>
+    <div id="line-y"></div>
+    <div id="mouse-coords"></div>
+
+
+    <!-- ⭐ EXTERNES SCRIPT (MODE + SCANLINES) -->
+    <script src="../script-startseite.js"></script>
 
 </body>
 
