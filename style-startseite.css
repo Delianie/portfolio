@@ -10,7 +10,7 @@ body {
     overflow: hidden;
     width: 100vw;
     height: 100vh;
-    background: black;
+    background: rgb(255, 255, 255);
 }
 
 /* ========= SLIDER-CONTAINER ========= */
@@ -20,6 +20,7 @@ body {
     height: 100vh;
     position: relative;
     overflow: hidden;
+    background-color: aliceblue;
 }
 
 .track {
@@ -37,24 +38,32 @@ body {
     height: 100vh;     /* Höhe fix */
     flex-shrink: 0;    /* NICHT zusammenschieben */
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    background: black;  /* damit Ränder nicht weiss sind */
+    background: rgb(255, 255, 255);  /* damit Ränder nicht weiss sind */
 }
+
+.media-wrapper:hover {
+    cursor: pointer;
+}
+
 
 /* Medien behalten Format */
 .media-wrapper img,
 .media-wrapper video {
-    height: 100%;      /* Höhe fix */
-    width: auto;       /* Breite automatisch → korrektes Verhältnis */
+    height: auto;      /* Höhe fix */
+    width: 400px;       /* Breite automatisch → korrektes Verhältnis */
     object-fit: contain;
+    gap: 20px;
 }
 
 /* ========= TEXT-OVERLAY ========= */
 
 .overlay-wrapper {
     position: absolute;
-    inset: 0;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,7 +72,7 @@ body {
 }
 
 #title {
-    color: white;
+    color: rgb(0, 0, 0);
     font-family: "neue-haas-grotesk-display", sans-serif;
     font-size: 15px;
     font-weight: 600;
@@ -72,9 +81,12 @@ body {
     z-index: 10;
     text-decoration: none;
 }
+#title:hover {
+    letter-spacing: 0.5px;
+}
 
 #subtitle {
-    color: white;
+    color: rgb(0, 0, 0);
     font-family: "Fragment Mono", monospace;
     font-size: 15px;
     pointer-events: none;
@@ -103,4 +115,17 @@ body {
         flex-direction: column;
         text-align: center;
     }
+}
+
+#preloader {
+    position: fixed;
+    inset: 0;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+    font-family: "Fragment Mono", monospace;
+    font-size: 15px;
+    z-index: 9999;
 }

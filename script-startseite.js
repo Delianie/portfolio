@@ -1,21 +1,25 @@
 /* ========= DATEN ========= */
 
 const images = [
-    { src: "images-startseite/neu/ilu.webp", title: "Typografie aus Technik", subtitle: "FONTDESIGN | ILLUSTRATION | TYPOGRAFIE", link: "html-project/03_ilustrarionfont.html" },
 
-    { src: "images-startseite/neu/coop.webp", title: "Intensität in der Tiefe", subtitle: "CORPORATE DESIGN | ILLUSTRATION", link: "html-project/06_bildwort.html" },
 
-    { src: "images-startseite/neu/blick.webp", title: "Aus dem Auge, aus dem Sinn?", subtitle: "POSTERDESIGN", link: "html-project/01_blickwechselplakat.html" },
+    
+    { src: "images-startseite/neu/1.webp", title: "Intensität in der Tiefe", subtitle: "LOGODESIGN | BRANDING", link: "html-project/06_bildwort.html" },
 
-    { src: "images-startseite/neu/master.webp", title: "Musik in Plakat", subtitle: "ZEITUNG | FOTOGRAFIE", link: "html-project/02_zeitung.html" },
+    { src: "images-startseite/neu/7.webp", title: "Aus dem Auge, aus dem Sinn?", subtitle: "POSTERDESIGN | EDITORIAL DESIGN | MOTION DESIGN", link: "html-project/01_blickwechselplakat.html" },
 
-    { src: "images-startseite/neu/ich.webp", title: "Delia Niederberger", subtitle: "SPORT | DESIGN | FAMILIE", link: "html-project/08_ich.html" },
+    { src: "images-startseite/neu/5.webp", title: "Typografie aus Technik", subtitle: "DECONSTRUCTION | TECH ILLUSTRATION | TYPE DESIGN", link: "html-project/03_ilustrarionfont.html" },
 
-    { src: "images-startseite/neu/london.webp", title: "Versteckte Geräusche von London", subtitle: "EDITORIAL DESIGN", link: "html-project/04_london.html" },
 
-    { src: "images-startseite/neu/motion.webp", title: "Neuinterpretation der Schweizer Typografie", subtitle: "MOTION DESIGN | TYPOGRAFIE", link: "html-project/05_motiontype.html" },
+    { src: "images-startseite/neu/6.webp", title: "Musik in Plakat", subtitle: "POSTERDESIGN | MOTION DESIGN", link: "html-project/02_zeitung.html" },
 
-    { src: "images-startseite/neu/prepress.webp", title: "Siebdruck – Farben übereinander", subtitle: "PREPRESS | COLOR MANAGEMENT | POSTERDESIGN", link: "html-project/07_preepress.html" }
+    { src: "images-startseite/neu/2.webp", title: "Delia Niederberger", subtitle: "PORTFOLIO", link: "html-project/08_ich.html" },
+
+    { src: "images-startseite/neu/3.webp", title: "Versteckte Geräusche von London", subtitle: "LAYOUT | EDITORIAL DESIGN | TYPOGRAFIE", link: "html-project/04_london.html" },
+
+    { src: "images-startseite/neu/4.webp", title: "Neuinterpretation der Schweizer Typografie", subtitle: "MOTION DESIGN | TYPOGRAFIE", link: "html-project/05_motiontype.html" },
+
+    
 ];
 
 /* ========= ELEMENTE ========= */
@@ -25,7 +29,7 @@ const titleEl = document.getElementById("title");
 const subtitleEl = document.getElementById("subtitle");
 
 const original = images.length;
-const totalLoops = 40;
+const totalLoops = 80;
 const fullList = [...Array(totalLoops)].flatMap(() => images);
 
 /* ========= MEDIEN ERZEUGEN ========= */
@@ -66,8 +70,9 @@ let velocity = 0;
 
 function wrapAround() {
     const max = original * totalLoops;
-    if (pos > max - original * 4) pos -= max / 2;
-    if (pos < original * 4) pos += max / 2;
+
+    // pos immer im Loop halten (Mathe-Lösung)
+    pos = ((pos % max) + max) % max;
 }
 
 /* ========= TEXT SYNCHRONISIEREN ========= */
@@ -144,10 +149,7 @@ document.addEventListener("wheel", e => {
     velocity = delta * 0.3;
 }, { passive: false });
 
-document.addEventListener("keydown", e => {
-    if (e.key === "ArrowLeft") velocity -= 1.5;
-    if (e.key === "ArrowRight") velocity += 1.5;
-});
+
 
 /* ========= TOUCH (MOBILE) ========= */
 
@@ -195,3 +197,25 @@ document.addEventListener("touchend", () => {
     touchStartY = null;
     touchCurrentY = null;
 }, { passive: false });
+
+
+/* ========= PFEILTASTEN (EINFACH) ========= */
+
+document.addEventListener("keydown", e => {
+    if (e.key === "ArrowLeft") {
+        moveBy(-1);   // ein Projekt nach links
+    }
+
+    if (e.key === "ArrowRight") {
+        moveBy(1);    // ein Projekt nach rechts
+    }
+});
+
+function moveBy(direction) {
+    // Ziel: nächste "Position" (nächstes Projekt)
+    const target = Math.round(pos + direction);
+
+    // sanft dahin rutschen
+    velocity += (target - pos) * 0.35;
+    // wenn es zu schnell/langsam ist: 0.35 kleiner/grösser machen
+}
