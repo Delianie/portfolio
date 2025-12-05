@@ -35,12 +35,10 @@ const fullList = [...Array(totalLoops)].flatMap(() => images);
 /* ========= MEDIEN ERZEUGEN ========= */
 
 fullList.forEach(item => {
-    const wrap = document.createElement("div");
-    wrap.className = "media-wrapper";
-
-    // LINK ERSTELLEN
-    const a = document.createElement("a");
-    a.href = item.link;
+    const link = document.createElement("a");
+    link.href = item.link;       // Projektseite
+    link.className = "media-wrapper";
+    link.target = "_self";       // Falls du im selben Tab öffnen willst
 
     if (item.src.endsWith(".mp4")) {
         const v = document.createElement("video");
@@ -49,15 +47,14 @@ fullList.forEach(item => {
         v.loop = true;
         v.muted = true;
         v.playsInline = true;
-        a.appendChild(v);
+        link.appendChild(v);
     } else {
         const img = document.createElement("img");
         img.src = item.src;
-        a.appendChild(img);
+        link.appendChild(img);
     }
 
-    wrap.appendChild(a);
-    track.appendChild(wrap);
+    track.appendChild(link);
 });
 
 /* ========= SLIDER LOGIK ========= */
