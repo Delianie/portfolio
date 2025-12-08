@@ -1,7 +1,10 @@
+/* ============================================================
+   GLOBAL RESETS & BASICS
+============================================================ */
+
 * {
     box-sizing: border-box;
 }
-
 
 body {
     margin: 0;
@@ -17,61 +20,114 @@ video {
 }
 
 
-/* -------------------------------------- */
-/*  FONTS                                 */
-/* -------------------------------------- */
+/* ============================================================
+   TYPOGRAFIE / FONTS
+============================================================ */
+
+/* (Leer – falls später Fonts geladen werden sollen) */
 
 
 
-/* -------------------------------------- */
-/*  HEADER (Punkt + DE/EN)                */
-/* -------------------------------------- */
-/* -----------------------
-   MODE 1: NORMAL (default)
---------------------------*/
+/* ============================================================
+   MODES: NORMAL / DARK / VECTOR
+============================================================ */
+
+/* ----------------------- */
+/* NORMAL MODE             */
+/* ----------------------- */
 body.normal-mode {
     background-color: #ffffff;
     color: #1a1a1a;
 }
 
-/* -----------------------
-   MODE 2: DARK
---------------------------*/
+/* ----------------------- */
+/* DARK MODE               */
+/* ----------------------- */
 body.dark-mode {
     background-color: #000000;
     color: #ffffff;
 }
 
-/* -----------------------
-   MODE 3: VECTOR MODE
---------------------------*/
+/* Alle Texte im Dark Mode */
+.dark-mode * {
+    color: #e2e2e2 !important;
+}
+
+.dark-mode .layout,
+.dark-mode .images,
+.dark-mode .end-section {
+    background-color: #1A1A1A !important;
+}
+
+.dark-mode .dot {
+    background-color: #e2e2e2;
+}
+
+.dark-mode .end-section__center,
+.dark-mode .end-section__tag {
+    color: #e2e2e2;
+}
+/* Hover-Effekte im DARK MODE */
+.dark-mode a:hover,
+.dark-mode .text-lang a:hover,
+.dark-mode .about:hover,
+.dark-mode .mode:hover,
+.dark-mode .end-section__center:hover,
+.dark-mode .end-section__tag:hover {
+    opacity: 0.6;
+    transition: opacity 0.15s ease;
+    color: #EC4899 !important;
+} 
+
+.dark-mode .dot:hover {
+    opacity: 0.6;
+    transition: opacity 0.15s ease;
+    background-color: #EC4899;
+}
+
+/* ----------------------- */
+/* VECTOR MODE             */
+/* ----------------------- */
 body.vector-mode {
     background-color: #ffffff;
     color: #000000;
-
     background-image:
         linear-gradient(to right, rgba(0, 0, 0, 0.08) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
     background-size: 40px 40px;
-
     font-family: 'Fragment Mono', monospace;
 }
 
-/* Menü-Elemente technisch */
+/* Menü-Elemente im Vector-Mode */
+/* Einheitliche Menü-Schrift im Vector Mode */
+/* Vector Mode Menüs – NUR text-lang hat eine Border */
 body.vector-mode .menu-right .mode,
 body.vector-mode .menu-right .about,
 body.vector-mode .menu-right .text-lang {
     border: 1px solid #000;
     padding: 4px 8px;
     font-family: 'Fragment Mono', monospace !important;
-    font-size: 1.2rem;
-    /* gleiche Schriftgröße */
+    font-size: 15px !important;
     line-height: 1.6rem;
     letter-spacing: -0.5px;
+    color: #000 !important;
 }
 
+/* Link IN text-lang → gleiche Schrift, aber KEINE Border */
+body.vector-mode .menu-right .text-lang a {
+    padding: 0;
+    font-family: 'Fragment Mono', monospace !important;
+    font-size: 15px !important;
+    line-height: 1.6rem;
+    letter-spacing: -0.5px;
+    color: #000 !important;
+    text-decoration: none;
+}
 
-body.vector-mode .images,body.vector-mode .end-section,body.vector-mode .layout {
+/* Elemente mit Raster-Hintergrund */
+body.vector-mode .images,
+body.vector-mode .end-section,
+body.vector-mode .layout {
     background-color: #fff;
     background-image:
         linear-gradient(to right, rgba(0, 0, 0, 0.08) 1px, transparent 1px),
@@ -79,13 +135,14 @@ body.vector-mode .images,body.vector-mode .end-section,body.vector-mode .layout 
     background-size: 20px 20px;
 }
 
+/* Dot im Vector-Mode */
 body.vector-mode .dot {
     border-radius: 0;
     outline: 1px solid #000;
     background-color: #fff;
 }
 
-/* Bildrahmen */
+/* Bildstil im Vector-Mode */
 body.vector-mode img,
 body.vector-mode video {
     outline: 1px solid #000;
@@ -94,23 +151,26 @@ body.vector-mode video {
     filter: grayscale(100%) contrast(120%);
 }
 
-
+/* Typografische Anpassung */
 body.vector-mode .titel,
 body.vector-mode .text,
-body.vector-mode .infos {
+body.vector-mode .infos,
+body.vector-mode .end-section__center,
+body.vector-mode .end-section__tag{
     font-family: 'Fragment Mono', monospace !important;
-    font-size: 1.2rem;
-    /* gleiche Schriftgröße */
-    line-height: 1.6rem;
+    font-size: 18px;
+    line-height: 25px;
     letter-spacing: -0.5px;
-    /* macht’s noch technischer */
     grid-column: 1 / 6;
+    text-transform: lowercase;
 }
 
 
-/* ----------------------------
-   SCANLINES (X and Y)
------------------------------*/
+
+/* ============================================================
+   SCANLINES & MOUSE COORD GRID (VECTOR MODE)
+============================================================ */
+
 #line-x,
 #line-y {
     position: fixed;
@@ -132,14 +192,13 @@ body.vector-mode .infos {
     top: 0;
 }
 
-/* Nur im Vector Mode sichtbar */
+/* Sichtbar nur im Vector Mode */
 body.vector-mode #line-x,
 body.vector-mode #line-y {
     display: block;
 }
 
-
-/* Koordinatenanzeige */
+/* Koordinaten-Anzeige */
 #mouse-coords {
     position: fixed;
     pointer-events: none;
@@ -151,15 +210,18 @@ body.vector-mode #line-y {
     border: 1px solid #000;
     z-index: 99999;
     display: none;
-    /* nur im Vector Mode sichtbar */
 }
 
-/* Nur im Vektor-Modus anzeigen */
+/* Nur im Vector Mode sichtbar */
 body.vector-mode #mouse-coords {
     display: block;
 }
 
 
+
+/* ============================================================
+   HEADER / MENU
+============================================================ */
 
 .menu {
     padding-top: 40px;
@@ -176,44 +238,24 @@ body.vector-mode #mouse-coords {
     z-index: 1000;
 }
 
+/* Punkt links */
 .dot {
     width: 20px;
     height: 20px;
     background-color: #1a1a1a;
     border-radius: 50%;
-
 }
 
+/* Menü rechts */
 .menu-right {
     margin-left: auto;
     display: flex;
     gap: 30px;
-    /* Abstand zwischen ABOUT – MODE – DE/EN */
 }
 
-.about {
-    font-family: 'Fragment Mono', monospace;
-    font-size: 1.1741vh;
-    font-weight: 500;
-    line-height: 1.3698vh;
-    color: #1a1a1a;
-    text-decoration: none;
-    text-align: right;
-
-
-}
-
-.text-lang {
-    font-family: 'Fragment Mono', monospace;
-    font-size: 1.1741vh;
-    font-weight: 500;
-    line-height: 1.3698vh;
-    color: #1a1a1a;
-    text-decoration: none;
-    text-align: right;
-
-}
-
+.about,
+.text-lang a,
+.text-lang,
 .mode {
     font-family: 'Fragment Mono', monospace;
     font-size: 1.1741vh;
@@ -222,12 +264,32 @@ body.vector-mode #mouse-coords {
     color: #1a1a1a;
     text-decoration: none;
     text-align: right;
+    text-decoration: none;
+    text-transform: uppercase;
 
 }
 
-/* -------------------------------------- */
-/* 12 SPALTEN GRID                        */
-/* -------------------------------------- */
+a:hover,
+.dot:hover,
+.text-lang a:hover,
+.about:hover,
+.mode:hover,
+.end-section__center:hover, 
+.end-section__tag:hover {
+    opacity: 0.6;
+    transition: opacity 0.15s ease;
+}
+
+.dot:hover {
+    opacity: 0.6;
+    transition: opacity 0.15s ease;
+}   
+
+
+/* ============================================================
+   GRID LAYOUT (12 Spalten)
+============================================================ */
+
 .layout {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -243,15 +305,18 @@ body.vector-mode #mouse-coords {
     left: 0;
     width: 100%;
     z-index: -1;
-    background-color: #f1f1f1;
 
+    background-color: #f1f1f1;
     min-height: 100vh;
 }
 
 
-/* -------------------------------------- */
-/*  TITEL                                 */
-/* -------------------------------------- */
+
+/* ============================================================
+   TEXTBEREICH: TITEL / TEXT / INFOS
+============================================================ */
+
+/* Titel */
 .titel {
     grid-column: 1 / 6;
     font-family: "neue-haas-grotesk-display", sans-serif;
@@ -259,15 +324,10 @@ body.vector-mode #mouse-coords {
     font-size: 58px;
     line-height: 50px;
     padding-bottom: 20px;
-    grid-row: min-content;
-
     grid-row: 1;
 }
 
-
-/* -------------------------------------- */
-/*  TEXT                                   */
-/* -------------------------------------- */
+/* Text */
 .text {
     grid-column: 1 / 4;
     font-family: "neue-haas-grotesk-display", sans-serif;
@@ -275,17 +335,10 @@ body.vector-mode #mouse-coords {
     font-size: 18px;
     line-height: 19.7px;
     max-width: 600px;
-    grid-row: auto;
     color: #1a1a1a;
-
-
 }
 
-
-
-/* -------------------------------------- */
-/*  INFOS                                  */
-/* -------------------------------------- */
+/* Infos */
 .infos {
     grid-column: 11/13;
     font-family: "Fragment Mono", monospace;
@@ -296,76 +349,23 @@ body.vector-mode #mouse-coords {
     color: var(--black);
     align-self: end;
     grid-row: 3;
-    /* setzt .infos an das untere Ende der Grid-Zeile */
     margin-top: auto;
-    /* sorgt dafür, dass es nach oben wegdrückt */
-
-
-}
-
-/* Dark Mode Zustand */
-.dark-mode {
-    background-color: #1A1A1A;
-    color: #e2e2e2 !important;
-}
-
-/* Alle Texte im Dark Mode */
-.dark-mode * {
-    color: #e2e2e2 !important;
 }
 
 
-.dark-mode .layout {
-    background-color: #1A1A1A;
-}
 
-.dark-mode .dot {
-    background-color: #e2e2e2;
-}
+/* ============================================================
+   BILD-INFRASTRUKTUR
+============================================================ */
 
-.dark-mode .images {
-    background-color: #1A1A1A;
-}
-
-.dark-mode .end-section {
-    background-color: #1A1A1A !important;
-}
-
-.dark-mode .end-section__center,
-.dark-mode .end-section__tag {
-    color: #e2e2e2;
-}
-
-.dark-mode {
-    background-color: #1A1A1A;
-    color: #e2e2e2;
-}
-
-.dark-mode * {
-    color: #e2e2e2 !important;
-}
-
-/* Bilder bleiben normal */
-
-
-
-/* -------------------------------------- */
-/*  BILD RECHTS                            */
-/* -------------------------------------- */
-
-
+/* Rechts Bild */
 .rechts-bild {
     grid-column: 9 / 12;
     grid-row: 1 / 13;
-    /* WICHTIG: über Titel + Text/Infos */
     align-self: stretch;
-    /* füllt die volle Höhe */
 }
 
-
-/* -------------------------------------- */
-/*  ERSTES BILD MIT VOLLER BREITE          */
-/* -------------------------------------- */
+/* Erstes Bild breit */
 .bild-breit {
     display: block;
     width: 100%;
@@ -374,12 +374,7 @@ body.vector-mode #mouse-coords {
     background-color: #ffffff;
 }
 
-
-
-
-/* -------------------------------------- */
-/*  RASTER FÜR DIE BILDER                  */
-/* -------------------------------------- */
+/* Bild-Grid */
 .images {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -390,57 +385,29 @@ body.vector-mode #mouse-coords {
     padding: 15px 80px 0 80px;
 }
 
-.images__image-1-8 {
-    grid-column: 1 / 8;
-}
-
-.images__image-1-5 {
-    grid-column: 1 / 5;
-}
-
-.images__image-5-13 {
-    grid-column: 5 / 13;
-}
-
-.images__image-1-7 {
-    grid-column: 1 / 7;
-}
-
-.images__image-7-13 {
-    grid-column: 7 / 13;
-}
-
-.images__image-6-13 {
-    grid-column: 6 / 13;
-}
-
-.images__image-1-13 {
-    grid-column: 1 / 13;
-}
-
-.images__image-1-4 {
-    grid-column: 1 / 4;
-}
-
-.images__image-4-7 {
-    grid-column: 4 / 7;
-}
-
-.images__image-7-10 {
-    grid-column: 7 / 10;
-}
-
-.images__image-10-13 {
-    grid-column: 10 / 13;
-}
+/* Verschiedene Layouts für Bilder */
+.images__image-1-8 { grid-column: 1 / 8; }
+.images__image-1-5 { grid-column: 1 / 5; }
+.images__image-5-13 { grid-column: 5 / 13; }
+.images__image-1-7 { grid-column: 1 / 7; }
+.images__image-7-13 { grid-column: 7 / 13; }
+.images__image-6-13 { grid-column: 6 / 13; }
+.images__image-1-13 { grid-column: 1 / 13; }
+.images__image-1-4 { grid-column: 1 / 4; }
+.images__image-4-7 { grid-column: 4 / 7; }
+.images__image-7-10 { grid-column: 7 / 10; }
+.images__image-10-13 { grid-column: 10 / 13; }
 
 
-/* End Section (volle Seite nach den Bildern) */
+
+/* ============================================================
+   END SECTION (Footer-Bereich deiner Work-Pages)
+============================================================ */
+
 .end-section {
     height: 100vh;
     width: 100%;
     background-color: #ffffff;
-    ;
     overflow: hidden;
 
     display: flex;
@@ -452,7 +419,7 @@ body.vector-mode #mouse-coords {
     z-index: 5;
 }
 
-/* ZENTRIERTER TEXT OBEN */
+/* SEE OTHER WORKS (zentriert oben) */
 .end-section__center {
     font-family: "Fragment Mono", monospace;
     font-size: 15px;
@@ -461,23 +428,22 @@ body.vector-mode #mouse-coords {
     text-decoration: none;
 }
 
+/* Textblock */
 .end-section__me {
     font-family: "neue-haas-grotesk-display", sans-serif;
     font-weight: 600;
     font-size: 18px;
     line-height: 19.7px;
     max-width: 600px;
-    grid-row: auto;
-    color: #1a1a1a;
     padding: 40px;
     text-decoration: none;
     text-align: center;
 }
 
-/* GROSSER TAG UNTEN */
+/* GROSSER TAG unten */
 .end-section__tag {
     position: absolute;
-    bottom: 40px;
+    bottom: 50px;
 
     padding-left: 80px;
     padding-right: 80px;
@@ -485,29 +451,51 @@ body.vector-mode #mouse-coords {
     font-family: "neue-haas-grotesk-display", sans-serif;
     font-size: 13.8vw;
     font-weight: 1000;
-    /* BLACK weight */
     line-height: 0.85;
 
     color: black;
     text-align: center;
     text-decoration: none;
-
 }
 
 
-.end-section__tag:hover {
-    color: #818181;
-    /* Farbe beim Hover */
+.footer-line {
+    padding-top: 40px;
+    padding-left: 80px;
+    padding-right: 80px;
+
+    position: absolute;
+    bottom: 10px;      /* statt top: 0 → jetzt am unteren Bildschirmrand */
+    left: 0;
+    width: 100%;
+    text-transform: uppercase;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-family: 'Fragment Mono', monospace !important;
+    font-size: 1.1741vh;
+    font-weight: 500;
+    line-height: 1.3698vh;
+    color: #1a1a1a;
+
+    z-index: 1000;
 }
+
+/* ============================================================
+   RESPONSIVE DESIGN
+============================================================ */
 
 @media (max-width: 700px) {
+
     .images {
         grid-template-columns: 1fr;
         padding-left: 20px;
         padding-right: 20px;
     }
 
-    .images>* {
+    .images > * {
         grid-column: 1 / -1;
     }
 
@@ -515,84 +503,73 @@ body.vector-mode #mouse-coords {
         padding-left: 20px;
         padding-right: 20px;
     }
+}
 
-
-
-    /* -------------------------------------- */
-    /*  RESPONSIVE ANPASSUNGEN                */
-    /* -------------------------------------- */
-
-    /* Wenn das Fenster kleiner wird → Text bis Spalte 8 ausdehnen */
-    @media (max-width: 1200px) {
-        .text {
-            grid-column: 1 / 8;
-            max-width: none;
-        }
-
-        .infos {
-            grid-column: 1 / 5;
-            margin-bottom: 80px;
-            /* Abstand bleibt fix */
-        }
+/* 1200px */
+@media (max-width: 1200px) {
+    .text {
+        grid-column: 1 / 8;
+        max-width: none;
     }
 
-    /* Wenn es so eng wird, dass das Bild stört → Bild ausblenden */
-    @media (max-width: 1000px) {
-        .rechts-bild {
-            display: none;
-        }
+    .infos {
+        grid-column: 1 / 5;
+        margin-bottom: 80px;
+    }
+}
 
-        .text {
-            grid-column: 1 / 9;
-            /* noch etwas breiter */
-        }
+/* 1000px — Bild rechts ausblenden */
+@media (max-width: 1000px) {
+
+    .rechts-bild {
+        display: none;
     }
 
-    /* Handy Layout */
-    @media (max-width: 900px) {
+    .text {
+        grid-column: 1 / 9;
+    }
+}
 
-        .text {
-            grid-column: 1 / -1;
-            font-size: 18px;
-            line-height: 16px;
-            max-width: none;
-        }
+/* 900px – Handy Layout */
+@media (max-width: 900px) {
 
-        .titel {
-            grid-column: 1 / -1;
-            padding-bottom: 20px;
-            padding-top: 10px;
-            font-size: 60px;
-            line-height: 50px;
-        }
-
-        .infos {
-            grid-column: 1 / -1;
-            align-self: end;
-            margin-top: auto;
-        }
-
-        .layout {
-            padding-left: 20px;
-            padding-right: 20px;
-            column-gap: 10px;
-            padding-top: 80px;
-        }
-
-        .rechts-bild {
-            display: none;
-        }
-
-        .layout {
-            padding-top: 80px;
-        }
+    .text {
+        grid-column: 1 / -1;
+        font-size: 18px;
+        line-height: 16px;
+        max-width: none;
     }
 
-    /* Sehr kleine Screens */
-    @media (max-width: 600px) {
-        .text {
-            font-size: 18px;
-            line-height: 26px;
-        }
+    .titel {
+        grid-column: 1 / -1;
+        padding-bottom: 20px;
+        padding-top: 10px;
+        font-size: 60px;
+        line-height: 50px;
+    }
+
+    .infos {
+        grid-column: 1 / -1;
+        align-self: end;
+        margin-top: auto;
+    }
+
+    .layout {
+        padding-left: 20px;
+        padding-right: 20px;
+        column-gap: 10px;
+        padding-top: 80px;
+    }
+
+    .rechts-bild {
+        display: none;
+    }
+}
+
+/* 600px */
+@media (max-width: 600px) {
+    .text {
+        font-size: 18px;
+        line-height: 26px;
     }
 }

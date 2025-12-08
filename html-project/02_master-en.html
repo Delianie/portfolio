@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Adobe Fonts Preload (Schnelleres Laden) -->
+    <link rel="preload" href="https://use.typekit.net/jjk1jtg.css" as="style">
+
+    <!-- Adobe Fonts -->
+    <link rel="stylesheet" href="https://use.typekit.net/jjk1jtg.css">
+
+    <!-- Google Font Fragment Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
+
+    <!-- Dein eigenes CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Layout</title>
+</head>
+
+
+<body class="normal-mode">
+
+    <div class="menu">
+        <a href="../index.html" class="dot"></a>
+
+        <div class="menu-right">
+            <div class="text-lang"><a href="02_master.html">DE/EN</a></div>
+            <div class="mode" id="toggle-dark">MODE</div>
+            <a href="../html-project/08_ich.html" class="about">ABOUT</a>
+        </div>
+    </div>
+
+    <div class="layout">
+
+        <div class="titel">Musik sehen</div>
+
+        <div class="text">
+            How can music be made visible? My project began with simple experiments: analog on paper,
+            digital with a camera, liquids, and stop motion. It quickly became clear how closely music and
+            design are connected—both thrive on rhythm, tempo, and movement. This connection forms the
+            basis of my poster.
+            It was created from analog scans of milk paper, which I superimposed and digitally processed.
+            This is complemented by a short animation that adds to the idea of movement. The black-and-white look
+            focuses
+            everything on shapes and sequences and shows how music can be experienced as movement in the image.
+
+            Translated with DeepL.com (free version)
+        </div>
+
+        <div class="infos">
+            Masterabschlusskonzerte HSLU<br>
+            2025<br><br>
+
+            POSTER DESIGN / EXPERIMENT / MOTION<br><br>
+
+            Dozent*innen:<br>
+            / Flückiger Kaspar <br>
+            / Flückiger Kaspar <br>
+            / Mosele Flavia <br><br>
+
+            @ Fachklasse Grafik Luzern
+        </div>
+
+        <div class="rechts-bild">
+            <video class="images__image-1-5" autoplay loop muted>
+                <source src="../imgs/master/Niederberger-Delia-MAK.mp4" type="video/mp4">
+            </video>
+        </div>
+
+    </div>
+
+    <video class="bild-breit" autoplay loop muted>
+        <source src="../imgs/master/MAK_MakingOf_2025.mp4">
+    </video>
+
+    <div class="images">
+        <video class="images__image-1-5" autoplay loop muted>
+            <source src="../imgs/master/Niederberger-Delia-MAK.mp4" type="video/mp4">
+        </video>
+
+        <img class="images__image-7-13" src="../imgs/master/1.webp" alt="">
+        <img class="images__image-1-7" src="../imgs/master/2.webp" alt="">
+        <video class="images__image-7-13" autoplay loop muted>
+            <source src="../imgs/master/2.mp4" type="video/mp4">
+        </video>
+        <img class="images__image-7-13" src="../imgs/master/Delia_4.jpg" alt="">
+    </div>
+
+    <div class="end-section">
+        <a href="../index.html" class="end-section__center">SEE OTHER WORKS</a>
+        <a href="https://instagram.com/d.nie.graphic" target="_blank" class="end-section__tag">@d.nie.graphic</a>
+
+        <!-- Footer-Bar direkt unter den Tags -->
+        <div class="footer-line">
+            <span class="footer-left">Delia Niederberger Portfolio</span>
+            <span class="footer-right">2025 Designed & developed by me</span>
+        </div>
+    </div>
+
+
+
+    <!-- SCAN-LINIEN (GLOBAL FÜR VECTOR MODE) -->
+    <div id="line-x"></div>
+    <div id="line-y"></div>
+    <div id="mouse-coords"></div>
+
+
+    <!--  EXTERNES SCRIPT (MODE + SCANLINES) -->
+    <script src="../script-startseite.js"></script>
+
+</body>
+
+</html>

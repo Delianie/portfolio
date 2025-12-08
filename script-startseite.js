@@ -1,31 +1,74 @@
 /* ============================================================
-   STARTSEITE: SLIDER / MEDIA-CAROUSEL
-   (Unverändert, nur sauber formatiert)
+   SPRACHE SPEICHERN + STARTSEITE AUTOMATISCH UMSCHALTEN
+============================================================ */
+
+document.addEventListener("DOMContentLoaded", () => {
+    const langSwitch = document.querySelector(".text-lang a");
+
+    // Wenn im Menü DE oder EN geklickt wird → Sprache speichern
+    if (langSwitch) {
+        langSwitch.addEventListener("click", () => {
+            if (langSwitch.href.includes("-en")) {
+                localStorage.setItem("siteLang", "en");
+            } else {
+                localStorage.setItem("siteLang", "de");
+            }
+        });
+    }
+
+    // Sprache aus localStorage holen
+    const lang = localStorage.getItem("siteLang") || "de";
+
+    const path = location.pathname;
+
+    // Automatische Startseitenkorrektur
+    if (lang === "en" && path.endsWith("index.html")) {
+        location.href = "index-en.html";
+    }
+
+    if (lang === "de" && path.endsWith("index-en.html")) {
+        location.href = "index.html";
+    }
+});
+
+
+/* ============================================================
+   STARTSEILE: SLIDER / MEDIA-CAROUSEL
 ============================================================ */
 
 const images = [
-    { src: "images-startseite/neu/1.webp", title: "Intensität in der Tiefe", link: "html-project/06_bildwort.html" },
-    { src: "images-startseite/neu/7.webp", title: "Aus dem Auge, aus dem Sinn?", link: "html-project/01_blickwechselplakat.html" },
-    { src: "images-startseite/neu/5.webp", title: "Typografie aus Technik", link: "html-project/03_ilustrarionfont.html" },
-    { src: "images-startseite/neu/2.webp", title: "Portfolio von Delia Niederberger", link: "html-project/08_ich.html" },
-    { src: "images-startseite/neu/6.webp", title: "Plakat hören", link: "html-project/02_zeitung.html" },
-    { src: "images-startseite/neu/3.webp", title: "Versteckte Geräusche von London", link: "html-project/04_london.html" },
-    { src: "images-startseite/neu/4.webp", title: "Neuinterpretation der Schweizer Typografie", link: "html-project/05_motiontype.html" }
+    { src: "images-startseite/neu/1.webp", title: "Intensity in depth", title_de: "Intensität in der Tiefe", link: "html-project/06_bildwort" },
+    { src: "images-startseite/neu/7.webp", title: "Out of sight, out of mind?", title_de: "Aus dem Auge, aus dem Sinn?", link: "html-project/01_blickwechselplakat" },
+    { src: "images-startseite/neu/5.webp", title: "Typography from technology", title_de: "Typografie aus Technik", link: "html-project/03_ilustrarionfont" },
+    { src: "images-startseite/neu/2.webp", title: "Portfolio by Delia Niederberger", title_de: "Portfolio von Delia Niederberger", link: "html-project/08_ich" },
+
+    { src: "images-startseite/neu/8.webp", title: "Prepress workflow", title_de: "Prepress Workflow", link: "html-project/07_prepress" },
+
+    { src: "images-startseite/neu/6.webp", title: "Master project", title_de: "Masterprojekt", link: "html-project/02_master" },
+
+    { src: "images-startseite/neu/3.webp", title: "Hidden sounds of London", title_de: "Versteckte Geräusche von London", link: "html-project/04_london" },
+    { src: "images-startseite/neu/4.webp", title: "Swiss typography reinterpreted", title_de: "Neuinterpretation der Schweizer Typografie", link: "html-project/05_motiontype" }
 ];
 
 const track = document.getElementById("track");
 const titleEl = document.getElementById("title");
 
+// Hole Sprache – sehr wichtig
+const currentLang = localStorage.getItem("siteLang") || "de";
+
 if (track && titleEl) {
     const original = images.length;
-    const totalLoops = 80;
+    const totalLoops = 60;
     const fullList = [...Array(totalLoops)].flatMap(() => images);
 
     fullList.forEach(item => {
         const link = document.createElement("a");
-        link.href = item.link;
+
+        // Sprache korrekt anhängen
+        const target = currentLang === "en" ? `${item.link}-en.html` : `${item.link}.html`;
+
+        link.href = target;
         link.className = "media-wrapper";
-        link.target = "_self";
 
         if (item.src.endsWith(".mp4")) {
             const v = document.createElement("video");
@@ -33,7 +76,6 @@ if (track && titleEl) {
             v.autoplay = true;
             v.loop = true;
             v.muted = true;
-            v.playsInline = true;
             link.appendChild(v);
         } else {
             const img = document.createElement("img");
@@ -44,18 +86,27 @@ if (track && titleEl) {
         track.appendChild(link);
     });
 
+    let pos = 100;
+    let velocity = 0;
     let imgWidth = window.innerWidth < 600 ? window.innerWidth : window.innerWidth / 3;
 
     window.addEventListener("resize", () => {
         imgWidth = window.innerWidth < 600 ? window.innerWidth : window.innerWidth / 3;
     });
 
-    let pos = original * 10;
-    let velocity = 0;
+    function animate() {
+        pos += velocity;
+        velocity *= 0.92;
 
-    function wrapAround() {
         const max = original * totalLoops;
         pos = ((pos % max) + max) % max;
+
+        track.style.transform = `translateX(${-pos * imgWidth}px)`;
+
+        updateText();
+        scaleItems();
+
+        requestAnimationFrame(animate);
     }
 
     function updateText() {
@@ -63,23 +114,34 @@ if (track && titleEl) {
         const center = window.innerWidth / 2;
 
         let closest = 0;
-        let distMin = Infinity;
+        let smallest = Infinity;
 
         for (let i = 0; i < media.length; i++) {
             const r = media[i].getBoundingClientRect();
-            const m = r.left + r.width / 2;
-            const d = Math.abs(center - m);
-            if (d < distMin) {
-                distMin = d;
+            const mid = r.left + r.width / 2;
+            const diff = Math.abs(center - mid);
+            if (diff < smallest) {
+                smallest = diff;
                 closest = i;
             }
         }
-        const logical = ((closest % original) + original) % original;
-        titleEl.textContent = images[logical].title;
-        titleEl.href = images[logical].link;
+
+        const logical = closest % original;
+
+        // Titel je nach Sprache
+        titleEl.textContent =
+            currentLang === "en"
+                ? images[logical].title
+                : images[logical].title_de;
+
+        // Link im Titel auch nach Sprache
+        titleEl.href =
+            currentLang === "en"
+                ? `${images[logical].link}-en.html`
+                : `${images[logical].link}.html`;
     }
 
-    function updateScale() {
+    function scaleItems() {
         const media = track.children;
         const center = window.innerWidth / 2;
 
@@ -87,73 +149,54 @@ if (track && titleEl) {
             const r = m.getBoundingClientRect();
             const mid = r.left + r.width / 2;
             const dist = Math.abs(center - mid);
-            const maxDist = center;
-            const t = Math.min(dist / maxDist, 1);
-            const scale = 1 + (0.18 * (t * t));
+
+            const t = Math.min(dist / center, 1);
+            const scale = 1 + 0.15 * (t * t);
             m.style.transform = `scale(${scale})`;
         }
     }
 
-    function animate() {
-        pos += velocity;
-        velocity *= 0.9;
-
-        wrapAround();
-        track.style.transform = `translateX(${-pos * imgWidth}px)`;
-
-        updateText();
-        updateScale();
-        requestAnimationFrame(animate);
-    }
     animate();
 
     document.addEventListener("wheel", e => velocity += e.deltaY * 0.002);
-
-    document.addEventListener("touchstart", e => { this.startX = e.touches[0].clientX; });
-    document.addEventListener("touchmove", e => {
-        const deltaX = e.touches[0].clientX - this.startX;
-        velocity += deltaX * 0.003;
-        this.startX = e.touches[0].clientX;
-    });
-
-    document.addEventListener("keydown", e => {
-        if (e.key === "ArrowRight") velocity += 0.5;
-        if (e.key === "ArrowLeft") velocity -= 0.5;
-    });
 }
 
+
 /* ============================================================
-   GLOBAL MODE SWITCH (Normal → Dark → Vector)
+   MODE SWITCH (Normal, Dark, Vector)
 ============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
     const toggle = document.getElementById("toggle-dark");
     const body = document.body;
 
-    if (!toggle) return;
-
     const modes = ["normal-mode", "dark-mode", "vector-mode"];
-    let index = 0;
+    let saved = localStorage.getItem("siteMode") || "normal-mode";
+    let index = modes.indexOf(saved);
 
-    function applyMode() {
+    function apply() {
         modes.forEach(m => body.classList.remove(m));
-        body.classList.add(modes[index]);
+        const now = modes[index];
+        body.classList.add(now);
+        toggle.textContent =
+            now === "normal-mode" ? "mode" :
+            now === "dark-mode"   ? "dark" :
+            "f(x)=x";
 
-        if (modes[index] === "normal-mode") toggle.textContent = "MODE";
-        if (modes[index] === "dark-mode") toggle.textContent = "DARK";
-        if (modes[index] === "vector-mode") toggle.textContent = "VECTOR";
+        localStorage.setItem("siteMode", now);
     }
 
-    applyMode();
+    apply();
 
     toggle.addEventListener("click", () => {
         index = (index + 1) % modes.length;
-        applyMode();
+        apply();
     });
 });
 
+
 /* ============================================================
-   SCAN-LINIEN (X/Y) FOLGEN DER MAUS — GLOBAL
+   VECTOR MODE SCANLINES
 ============================================================ */
 
 document.addEventListener("mousemove", e => {
@@ -171,13 +214,15 @@ document.addEventListener("mousemove", e => {
     lx.style.display = "block";
     ly.style.display = "block";
 
-    lx.style.top = e.clientY + "px";
-    ly.style.left = e.clientX + "px";
+    lx.style.top = `${e.clientY}px`;
+    ly.style.left = `${e.clientX}px`;
 });
 
-/* ============================================
-   KOORDINATEN ANZEIGEN NEBEN DER MAUS
-============================================ */
+
+/* ============================================================
+   VECTOR MODE COORDINATES
+============================================================ */
+
 document.addEventListener("mousemove", (e) => {
     const box = document.getElementById("mouse-coords");
 
@@ -189,8 +234,8 @@ document.addEventListener("mousemove", (e) => {
     }
 
     box.style.display = "block";
-    box.style.left = (e.clientX + 15) + "px";
-    box.style.top = (e.clientY + 15) + "px";
+    box.style.left = `${e.clientX + 15}px`;
+    box.style.top = `${e.clientY + 15}px`;
 
-    box.textContent = `x: ${e.clientX}px  |  y: ${e.clientY}px`;
+    box.textContent = `x: ${e.clientX}px | y: ${e.clientY}px`;
 });
