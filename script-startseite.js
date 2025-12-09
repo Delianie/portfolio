@@ -37,17 +37,25 @@ document.addEventListener("DOMContentLoaded", () => {
 ============================================================ */
 
 const images = [
-    { src: "images-startseite/neu/1.webp", title: "Intensity in depth", title_de: "Intensität in der Tiefe", link: "html-project/06_bildwort" },
+
+
     { src: "images-startseite/neu/7.webp", title: "Out of sight, out of mind?", title_de: "Aus dem Auge, aus dem Sinn?", link: "html-project/01_blickwechselplakat" },
-    { src: "images-startseite/neu/5.webp", title: "Typography from technology", title_de: "Typografie aus Technik", link: "html-project/03_ilustrarionfont" },
+
+    { src: "images-startseite/neu/8.webp", title: "61 Years Uldry x 61 Posters", title_de: "61 Years Uldry x 61 Posters", link: "html-project/07_prepress" },
+
     { src: "images-startseite/neu/2.webp", title: "Portfolio by Delia Niederberger", title_de: "Portfolio von Delia Niederberger", link: "html-project/08_ich" },
 
-    { src: "images-startseite/neu/8.webp", title: "Prepress workflow", title_de: "Prepress Workflow", link: "html-project/07_prepress" },
+    { src: "images-startseite/neu/5.webp", title: "Typography from technology", title_de: "Typografie aus Technik", link: "html-project/03_ilustrarionfont" },
+
+
+
 
     { src: "images-startseite/neu/6.webp", title: "Master project", title_de: "Masterprojekt", link: "html-project/02_master" },
 
     { src: "images-startseite/neu/3.webp", title: "Hidden sounds of London", title_de: "Versteckte Geräusche von London", link: "html-project/04_london" },
-    { src: "images-startseite/neu/4.webp", title: "Swiss typography reinterpreted", title_de: "Neuinterpretation der Schweizer Typografie", link: "html-project/05_motiontype" }
+
+    { src: "images-startseite/neu/4.webp", title: "Swiss typography reinterpreted", title_de: "Neuinterpretation der Schweizer Typografie", link: "html-project/05_motiontype" },
+    { src: "images-startseite/neu/1.webp", title: "Intensity in depth", title_de: "Intensität in der Tiefe", link: "html-project/06_bildwort" }
 ];
 
 const track = document.getElementById("track");
@@ -58,7 +66,7 @@ const currentLang = localStorage.getItem("siteLang") || "de";
 
 if (track && titleEl) {
     const original = images.length;
-    const totalLoops = 60;
+    const totalLoops = 100;
     const fullList = [...Array(totalLoops)].flatMap(() => images);
 
     fullList.forEach(item => {
@@ -151,14 +159,23 @@ if (track && titleEl) {
             const dist = Math.abs(center - mid);
 
             const t = Math.min(dist / center, 1);
-            const scale = 1 + 0.15 * (t * t);
+            const scale = 1 + 0.25 * (t * t);
             m.style.transform = `scale(${scale})`;
         }
     }
 
     animate();
 
-    document.addEventListener("wheel", e => velocity += e.deltaY * 0.002);
+    document.addEventListener("wheel", e => {
+        // Wenn horizontal gescrollt wird (Trackpad)
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+            velocity += e.deltaX * 0.002;
+        }
+        // Wenn vertikal gescrollt wird (normales Scrollrad)
+        else {
+            velocity += e.deltaY * 0.002;
+        }
+    });
 }
 
 
@@ -180,8 +197,8 @@ document.addEventListener("DOMContentLoaded", () => {
         body.classList.add(now);
         toggle.textContent =
             now === "normal-mode" ? "mode" :
-            now === "dark-mode"   ? "dark" :
-            "f(x)=x";
+                now === "dark-mode" ? "dark" :
+                    "f(x)=x";
 
         localStorage.setItem("siteMode", now);
     }

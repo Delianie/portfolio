@@ -73,9 +73,10 @@ body {
 
 #title {
     color: rgb(0, 0, 0);
-    font-family: "neue-haas-grotesk-display", sans-serif;
-    font-size: 15px;
-    font-weight: 600;
+    font-family: "Fragment Mono", monospace;
+    font-size: 1.1741vh;
+    font-weight: 500;
+    line-height: 1.3698vh;
     pointer-events: auto;
     cursor: pointer;
     z-index: 10;

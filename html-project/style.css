@@ -318,7 +318,7 @@ a:hover,
 
 /* Titel */
 .titel {
-    grid-column: 1 / 6;
+    grid-column: 1 / 7;
     font-family: "neue-haas-grotesk-display", sans-serif;
     font-weight: 600;
     font-size: 58px;
@@ -329,7 +329,7 @@ a:hover,
 
 /* Text */
 .text {
-    grid-column: 1 / 4;
+    grid-column: 2 / 4;
     font-family: "neue-haas-grotesk-display", sans-serif;
     font-weight: 600;
     font-size: 18px;
@@ -340,7 +340,7 @@ a:hover,
 
 /* Infos */
 .infos {
-    grid-column: 11/13;
+    grid-column: 1/10;
     font-family: "Fragment Mono", monospace;
     font-size: 1.1741vh;
     font-weight: 500;
@@ -360,7 +360,12 @@ a:hover,
 
 /* Rechts Bild */
 .rechts-bild {
-    grid-column: 9 / 12;
+    grid-column: 8 / 13;
+    grid-row: 1 / 13;
+    align-self: stretch;
+}
+.rechts-video {
+    grid-column: 10 / 13;
     grid-row: 1 / 13;
     align-self: stretch;
 }
@@ -397,6 +402,7 @@ a:hover,
 .images__image-4-7 { grid-column: 4 / 7; }
 .images__image-7-10 { grid-column: 7 / 10; }
 .images__image-10-13 { grid-column: 10 / 13; }
+
 
 
 
