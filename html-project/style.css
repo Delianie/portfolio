@@ -422,7 +422,10 @@ a:hover,
 /* SEE OTHER WORKS (zentriert oben) */
 .end-section__center {
     font-family: "Fragment Mono", monospace;
-    font-size: 15px;
+     font-size: 1.1741vh;
+    font-weight: 500;
+    line-height: 1.3698vh;
+    text-transform: uppercase;
     color: black;
     letter-spacing: 0.8px;
     text-decoration: none;
