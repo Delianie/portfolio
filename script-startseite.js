@@ -166,17 +166,9 @@ if (track && titleEl) {
 
     animate();
 
-    document.addEventListener("wheel", e => {
-        // Wenn horizontal gescrollt wird (Trackpad)
-        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-            velocity += e.deltaX * 0.002;
-        }
-        // Wenn vertikal gescrollt wird (normales Scrollrad)
-        else {
-            velocity += e.deltaY * 0.002;
-        }
-    });
+    animate();
 
+    // DESKTOP: Wheel / Trackpad
     document.addEventListener("wheel", e => {
         if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
             velocity += e.deltaX * 0.002;
@@ -184,25 +176,39 @@ if (track && titleEl) {
             velocity += e.deltaY * 0.002;
         }
     });
-    // TOUCH / MOBILE SCROLL SUPPORT
+
+    // MOBILE: Touch / Swipe
     let touchStartX = 0;
+    let touchStartY = 0;
+    let isDragging = false;
 
     track.addEventListener("touchstart", e => {
         touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        isDragging = true;
     }, { passive: true });
 
     track.addEventListener("touchmove", e => {
+        if (!isDragging) return;
+
         const currentX = e.touches[0].clientX;
-        const diff = touchStartX - currentX;
+        const currentY = e.touches[0].clientY;
 
-        // Je nach Fingerbewegung → Geschwindigkeit anpassen
-        velocity += diff * 0.01;
+        const diffX = touchStartX - currentX;
+        const diffY = touchStartY - currentY;
 
-        touchStartX = currentX; // wichtig für kontinuierliches Wischen
-    }, { passive: true });
+        // Horizontale Bewegung stärker → Slider ziehen
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+            e.preventDefault();              // Blockiert Seiten-Scrollen
+            velocity += diffX * 0.02;        // Geschwindigkeit
+        }
+
+        touchStartX = currentX;
+        touchStartY = currentY;
+    }, { passive: false });
 
     track.addEventListener("touchend", () => {
-        // Optional: Nachgleiten (inertia) bleibt über velocity erhalten
+        isDragging = false;
     });
 
 }
