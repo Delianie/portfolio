@@ -176,6 +176,35 @@ if (track && titleEl) {
             velocity += e.deltaY * 0.002;
         }
     });
+
+    document.addEventListener("wheel", e => {
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+            velocity += e.deltaX * 0.002;
+        } else {
+            velocity += e.deltaY * 0.002;
+        }
+    });
+    // TOUCH / MOBILE SCROLL SUPPORT
+    let touchStartX = 0;
+
+    track.addEventListener("touchstart", e => {
+        touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    track.addEventListener("touchmove", e => {
+        const currentX = e.touches[0].clientX;
+        const diff = touchStartX - currentX;
+
+        // Je nach Fingerbewegung → Geschwindigkeit anpassen
+        velocity += diff * 0.01;
+
+        touchStartX = currentX; // wichtig für kontinuierliches Wischen
+    }, { passive: true });
+
+    track.addEventListener("touchend", () => {
+        // Optional: Nachgleiten (inertia) bleibt über velocity erhalten
+    });
+
 }
 
 
