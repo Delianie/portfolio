@@ -615,3 +615,11 @@ a:hover,
         line-height: 26px;
     }
 }
+
+#track {
+    touch-action: pan-y pinch-zoom; /* Erlaubt vertikales Wischen ohne Browser-Interferenz */
+    cursor: grab;
+}
+#track:active {
+    cursor: grabbing;
+}

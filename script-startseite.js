@@ -66,6 +66,7 @@ if (track && titleEl) {
         track.appendChild(link);
     });
 
+    // Start-Position in der Mitte der Klone für unendliches Gefühl
     let pos = (totalLoops / 2) * original; 
     let velocity = 0;
     let imgWidth = window.innerWidth < 600 ? window.innerWidth : window.innerWidth / 3;
@@ -79,6 +80,7 @@ if (track && titleEl) {
         velocity *= 0.94; // Reibung für das Karussell-Gefühl
 
         const maxElements = original * totalLoops;
+        // Unendlicher Loop Reset
         if (pos < 0) pos += maxElements;
         if (pos >= maxElements) pos -= maxElements;
 
@@ -119,8 +121,52 @@ if (track && titleEl) {
             const mid = r.left + r.width / 2;
             const dist = Math.abs(center - mid);
 
+            // DEIN WUNSCH: Mitte 100%, Rand GRÖSSER
             const t = Math.min(dist / center, 1.2); 
-            const
+            const scale = 1 + 0.35 * (t * t); // Mitte ist 1, Rand wächst auf 1.35
+            m.style.transform = `scale(${scale})`;
+        }
+    }
+
+// TOUCH (Mobile Optimiert)
+    let isDragging = false;
+    let lastX = 0;
+    let lastY = 0;
+
+    track.addEventListener("touchstart", e => {
+        isDragging = true;
+        // Speichere Startposition für X und Y
+        lastX = e.touches[0].clientX;
+        lastY = e.touches[0].clientY;
+        velocity = 0; // Stoppt den Slider sofort bei Berührung
+    }, { passive: true });
+
+    track.addEventListener("touchmove", e => {
+        if (!isDragging) return;
+
+        const currentX = e.touches[0].clientX;
+        const currentY = e.touches[0].clientY;
+
+        // Berechne die Differenz für beide Achsen
+        const diffX = lastX - currentX;
+        const diffY = lastY - currentY;
+
+        // Kombiniere X und Y Bewegung (so kann man diagonal/vertikal den Slider schieben)
+        // Wir teilen durch imgWidth, damit die Bewegung 1:1 mit dem Finger geht
+        const moveDelta = (diffX + diffY) / imgWidth;
+        
+        pos += moveDelta;
+        velocity = moveDelta; // Gibt dem Slider den "Schwung" beim Loslassen
+
+        lastX = currentX;
+        lastY = currentY;
+    }, { passive: true });
+
+    track.addEventListener("touchend", () => {
+        isDragging = false;
+        // Optional: Den Schwung beim Loslassen leicht verstärken für mehr "Gleiten"
+        velocity *= 1.5; 
+    });
 
 /* ============================================================
    3. MODE SWITCH & VECTOR MODE (SCANLINES, CIRCLE, COORDS)
