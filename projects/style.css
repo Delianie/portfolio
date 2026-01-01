@@ -1,7 +1,16 @@
 /* ============================================================
    GLOBAL RESETS & BASICS
 ============================================================ */
+html {
+    scroll-behavior: smooth; /* Macht das Scrollen geschmeidiger */
+    -webkit-font-smoothing: antialiased; /* Macht Schriften auf Macs schöner */
+}
 
+img {
+    display: block;
+    max-width: 100%;
+    height: auto; /* Verhindert Verzerrungen */
+}
 * {
     box-sizing: border-box;
 }
@@ -168,56 +177,56 @@ body.vector-mode .end-section__tag{
 
 
 /* ============================================================
-   SCANLINES & MOUSE COORD GRID (VECTOR MODE)
+   SCANLINES & MOUSE COORD GRID (VECTOR MODE) - DARK STYLE
 ============================================================ */
 
-#line-x,
-#line-y {
+/* Fadenkreuz Linien (jetzt Schwarz) */
+#line-x, #line-y {
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: #000000; /* Reines Schwarz */
+    opacity: 0.4;             /* Etwas kräftiger, damit man es sieht */
     pointer-events: none;
-    z-index: 9999;
+    z-index: 10000;
     display: none;
 }
+#line-x { width: 100vw; height: 1px; }
+#line-y { height: 100vh; width: 1px; }
 
-#line-x {
-    height: 1px;
-    width: 100%;
-    left: 0;
-}
-
-#line-y {
-    width: 1px;
-    height: 100%;
-    top: 0;
-}
-
-/* Sichtbar nur im Vector Mode */
-body.vector-mode #line-x,
-body.vector-mode #line-y {
-    display: block;
-}
-
-/* Koordinaten-Anzeige */
+/* Koordinatenbox (angepasst an deinen typografischen Vector-Style) */
 #mouse-coords {
     position: fixed;
     pointer-events: none;
-    font-family: 'Fragment Mono', monospace;
-    font-size: 12px;
-    background: rgba(255, 255, 255, 0.8);
-    color: #000;
-    padding: 4px 6px;
-    border: 1px solid #000;
-    z-index: 99999;
+    z-index: 10001;
+    
+    /* Deine gewünschten Schrift-Einstellungen */
+    font-family: 'Fragment Mono', monospace !important;
+    font-size: 18px;            /* Gleiche Größe wie dein Text */
+    line-height: 25px;          /* Gleicher Zeilenabstand */
+    letter-spacing: -0.5px;     /* Engere Laufweite */
+    text-transform: lowercase;  /* Alles kleingeschrieben */
+    
+    color: #000000;
+    background: #ffffff;
+    border: 1px solid #000000;
+    padding: 10px 15px;         /* Etwas mehr Platz für die größere Schrift */
     display: none;
 }
 
-/* Nur im Vector Mode sichtbar */
-body.vector-mode #mouse-coords {
-    display: block;
+
+/* Effekt beim Hovern über das Bild im Vector-Mode */
+.vector-mode .media-wrapper:hover .golden-grid,
+.vector-mode .rechts-bild:hover .golden-grid {
+    opacity: 1;
 }
 
-
+/* OPTIMIERUNG: Nur leicht abdunkeln, kein Graustufen-Filter, 
+   damit die schwarzen Linien gut sichtbar bleiben */
+.vector-mode .media-wrapper:hover img,
+.vector-mode .media-wrapper:hover video,
+.vector-mode .rechts-bild:hover img {
+    filter: brightness(0.9); 
+    transition: all 0.4s ease;
+}
 
 /* ============================================================
    HEADER / MENU
