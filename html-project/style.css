@@ -539,38 +539,62 @@ a:hover,
     }
 }
 
-/* 900px – Handy Layout */
+/* ============================================================
+   RESPONSIVE DESIGN (Handy & Tablet)
+============================================================ */
+
 @media (max-width: 900px) {
-
-    .text {
-        grid-column: 1 / -1;
-        font-size: 18px;
-        line-height: 16px;
-        max-width: none;
+    
+    /* 1. Menü anpassen */
+    .menu {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
     }
 
-    .titel {
-        grid-column: 1 / -1;
-        padding-bottom: 20px;
-        padding-top: 10px;
-        font-size: 60px;
-        line-height: 50px;
+    .menu-right {
+        gap: 15px; /* Ein angenehmer Abstand zwischen den Links */
     }
 
-    .infos {
-        grid-column: 1 / -1;
-        align-self: end;
-        margin-top: auto;
+    .about, .text-lang, .mode, .text-lang a {
+        font-size: 14px; /* Gut lesbare Größe für Mobile */
+        padding: 10px 5px; /* Vergrößert die Klickfläche für den Finger */
     }
 
+    /* 2. Layout & Spalten */
     .layout {
         padding-left: 20px;
         padding-right: 20px;
+        padding-top: 80px; /* Rückt den Titel näher an das Menü */
         column-gap: 10px;
-        padding-top: 80px;
+        display: block; /* Stapelt die Elemente untereinander */
     }
 
-    .rechts-bild {
+    /* 3. Text & Typografie */
+    .titel {
+        font-size: 42px; /* Großer, klarer Titel (statt 60px) */
+        line-height: 46px; /* Engere Zeilenhöhe für kompakte Optik */
+        padding-bottom: 20px;
+        padding-top: 0px; 
+        margin-bottom: 24px;
+    }
+
+    .text {
+        font-size: 18px; /* Deine gewünschte Größe */
+        line-height: 26px; /* Mehr Platz zwischen den Zeilen zum Lesen */
+        max-width: none;
+        margin-bottom: 30px;
+    }
+
+    .infos {
+        font-size: 12px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    /* 4. Elemente ausblenden */
+    .rechts-bild, 
+    .rechts-video {
         display: none;
     }
 }
