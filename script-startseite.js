@@ -1,36 +1,3 @@
-/* ============================================================
-   SPRACHE SPEICHERN + STARTSEITE AUTOMATISCH UMSCHALTEN
-============================================================ */
-
-document.addEventListener("DOMContentLoaded", () => {
-    const langSwitch = document.querySelector(".text-lang a");
-
-    // Wenn im Menü DE oder EN geklickt wird → Sprache speichern
-    if (langSwitch) {
-        langSwitch.addEventListener("click", () => {
-            if (langSwitch.href.includes("-en")) {
-                localStorage.setItem("siteLang", "en");
-            } else {
-                localStorage.setItem("siteLang", "de");
-            }
-        });
-    }
-
-    // Sprache aus localStorage holen
-    const lang = localStorage.getItem("siteLang") || "de";
-
-    const path = location.pathname;
-
-    // Automatische Startseitenkorrektur
-    if (lang === "en" && path.endsWith("index.html")) {
-        location.href = "index-en.html";
-    }
-
-    if (lang === "de" && path.endsWith("index-en.html")) {
-        location.href = "index.html";
-    }
-});
-
 
 /* ============================================================
    STARTSEILE: SLIDER / MEDIA-CAROUSEL
