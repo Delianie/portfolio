@@ -55,9 +55,41 @@ const projectTranslations = {
         ILLUSTRATION / FONTDESIGN<br><br>
         Dozent*innen:<br>
         / Mauro Paolozzi<br><br>
-        @ Fachklasse Grafik Luzern`
-    },
+        @ Fachklasse Grafik Luzern`,
 
+        /* ================= PROJECT 4 ================= */
+        p4_titel: "Versteckte Geräusche in London",
+        p4_text: `Wer in London beginnt, bewusst zuzuhören, entdeckt plötzlich Details, die sonst verborgen bleiben. Dieses
+        Buch spielt mit dieser selektiven Wahrnehmung: Die Seiten zeigen die Perspektiven wilder Tiere, doch die
+        Bilder verraten nicht, welchem Tier sie gehören. Tiergeräusche werden zum Leitmotiv, Dialoge beginnen mit
+        Lauten von Vögeln, Füchsen oder Igeln. So entsteht ein abstraktes, lebendiges London.`,
+        p4_infos: `Hidden Sounds of London<br>
+        2025<br><br>
+        BUCHGESTALTUNG / FOTOGRAFIE / ANIMATION<br><br>
+        Dozent*innen:<br>
+        / Martin Woodtli<br>
+        / Martin Infanger<br>
+        / Felix Pfäffli<br>
+        / Zvonimir Pisonic<br><br>
+        @ Fachklasse Grafik Luzern`,
+
+        /* ================= PROJECT 5 ================= */
+        p5_titel: "Neuinterpretation Schweizer Typografie",
+        p5_text: `Animierte Typografie eröffnet neue Perspektiven auf klassische Gestaltung. Die minimalistischen Werke von
+        Emil Ruder aus dem Buch Typografie werden durch einfache Animationen experimentell und lebendig. Bewegung
+        verstärkt, verändert oder interpretiert die ursprüngliche Aussage neu. Zusätzlich erzeugt der Austausch der
+        Buchstaben untereinander spannende visuelle Effekte. So entsteht ein Spielraum für Experiment und
+        spielerische Umdeutung von Sprache und Form.`,
+        p5_infos: `Neuinterpretation Schweizer Typografie<br>
+        Videozusammenschnitt der ganzen Klasse<br>
+        2024<br><br>
+        ANIMATION / MOTION DESIGN<br><br>
+        Dozent*innen:<br>
+        / Martin Woodtli<br>
+        / Martin Infanger<br><br>
+        @ Fachklasse Grafik Luzern`,    
+    },
+    
     en: {
         /* ================= PROJECT 1 ================= */
         p1_titel: "Out of Sight, Out of Mind?",
@@ -110,7 +142,40 @@ const projectTranslations = {
         ILLUSTRATION / FONT DESIGN<br><br>
         Lecturers:<br>
         / Mauro Paolozzi<br><br>
-        @ Graphic Design School Lucerne`
+        @ Graphic Design School Lucerne`,
+
+        /* ================= PROJECT 4 ================= */
+        p4_titel: "Hidden Sounds of London",
+        p4_text: `When you start to listen consciously in London, you suddenly discover details that would otherwise remain hidden.
+        This book plays with this selective perception: The pages show the perspectives of wild animals, but the images
+        do not reveal which animal they belong to. Animal sounds become the leitmotif, dialogues begin with the sounds
+        of birds, foxes, or hedgehogs. Thus, an abstract, lively London is created.`,
+        p4_infos: `Hidden Sounds of London<br>
+        2025<br><br>
+        BOOK DESIGN / PHOTOGRAPHY / ANIMATION<br><br>
+        Lecturers:<br>
+        / Martin Woodtli<br>
+        / Martin Infanger<br>
+        / Felix Pfäffli<br>
+        / Zvonimir Pisonic<br><br>
+        @ Graphic Design School Lucerne`,  
+        /* ================= PROJECT 5 ================= */
+        p5_titel: "Reinterpretation of Swiss Typography",
+        p5_text: `Animated typography opens up new perspectives on classical design. The minimalist works of
+        Emil Ruder from the book Typography are made experimental and lively through simple animations. Movement
+        reinforces, changes, or reinterprets the original statement. Additionally, the exchange of letters among
+        each other creates exciting visual effects. This creates a space for experimentation and playful reinterpretation
+        of language and form.`,
+        p5_infos: `Reinterpretation of Swiss Typography<br>
+        Video compilation of the entire class<br>
+        2024<br><br>
+        ANIMATION / MOTION DESIGN<br><br>
+        Lecturers:<br>
+        / Martin Woodtli<br>
+        / Martin Infanger<br><br>
+        @ Graphic Design School Lucerne`, 
+
+   
     }
 };
 
