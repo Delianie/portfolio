@@ -329,7 +329,7 @@ a:hover,
 
 /* Text */
 .text {
-    grid-column: 2 / 4;
+    grid-column: 2 / 6;
     font-family: "neue-haas-grotesk-display", sans-serif;
     font-weight: 600;
     font-size: 18px;
