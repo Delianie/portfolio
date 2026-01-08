@@ -5,21 +5,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Adobe Fonts Preload (Schnelleres Laden) -->
+    <link rel="icon" type="image/png" href="../imgs/favicon.png">
+    <link rel="apple-touch-icon" href="../imgs/favicon.png">
+
+    <title>Delia Niederberger | Portfolio</title>
+    <meta name="description" content="Portfolio von Delia Niederberger – Grafikdesign, Typografie & Motion.">
+
     <link rel="preload" href="https://use.typekit.net/jjk1jtg.css" as="style">
-
-    <!-- Adobe Fonts -->
     <link rel="stylesheet" href="https://use.typekit.net/jjk1jtg.css">
-
-    <!-- Google Font Fragment Mono -->
     <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
 
-    <!-- Dein eigenes CSS -->
     <link rel="stylesheet" href="style.css" />
 
-    <title>Layout</title>
 </head>
-
 
 <body class="normal-mode">
 
@@ -27,19 +25,21 @@
         <a href="../index.html" class="dot"></a>
 
         <div class="menu-right">
-            <div class="text-lang"><a href="06_bildwort-en.html">DE/EN</a></div>
+            <div class="text-lang"><a href="#" id="lang-switch">DE/EN</a></div>
+
             <div class="mode" id="toggle-dark">MODE</div>
-            <a href="../html-project/08_ich.html" class="about">ABOUT</a>
+
+            <a href="../html-project/about.html" class="about">ABOUT</a>
         </div>
     </div>
 
     <div class="layout">
 
-        <div class="titel">
+        <div class="titel" data-key="p6_titel">
             Identität in der Tiefe
         </div>
 
-        <div class="text">
+        <div class="text" data-key="p6_text">
             Wie könnte die visuelle Identität eines Unternehmens aussehen, das Eistauchausrüstung für die Antarktis
             herstellt? Das Corporate Design der fiktiven Marke Nuoto greift diese Frage auf. Analog mit Milchpapier und
             dem Geodreieck entwickelt, entstand ein Erscheinungsbild, das Kälte, Tiefe sowie Bewegung vermittelt und auf
@@ -47,7 +47,7 @@
             prägnant und sinnbildlich für Zuverlässigkeit unter der Eisoberlfläche.
         </div>
 
-        <div class="infos">
+        <div class="infos" data-key="p6_infos">
             Nuoto<br>
             2025<br><br>
 
@@ -70,30 +70,22 @@
     <img class="bild-breit" src="../imgs/06_bildwort/hero.webp" alt="">
 
 
-    <div class="images">
-
-    </div>
-
     <div class="end-section">
         <a href="../index.html" class="end-section__center">SEE OTHER WORKS</a>
         <a href="https://instagram.com/d.nie.graphic" target="_blank" class="end-section__tag">@d.nie.graphic</a>
 
-        <!-- Footer-Bar direkt unter den Tags -->
         <div class="footer-line">
             <span class="footer-left">Delia Niederberger Portfolio</span>
             <span class="footer-right">2025 Designed & developed by me</span>
         </div>
     </div>
 
-
-
-    <!-- SCAN-LINIEN (GLOBAL FÜR VECTOR MODE) -->
     <div id="line-x"></div>
     <div id="line-y"></div>
+    <div id="mouse-circle"></div>
     <div id="mouse-coords"></div>
 
-
-    <!--  EXTERNES SCRIPT (MODE + SCANLINES) -->
+    <script src="../translations.js"></script>
     <script src="../script-startseite.js"></script>
 
 </body>

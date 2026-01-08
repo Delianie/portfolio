@@ -87,9 +87,42 @@ const projectTranslations = {
         Dozent*innen:<br>
         / Martin Woodtli<br>
         / Martin Infanger<br><br>
-        @ Fachklasse Grafik Luzern`,    
+        @ Fachklasse Grafik Luzern`,   
+        
+        /* ================= PROJECT 6 ================= */     
+        p6_titel: "Identität in der Tiefe",
+        p6_text: `Wie könnte die visuelle Identität eines Unternehmens aussehen, das Eistauchausrüstung für die Antarktis
+        herstellt? Das Corporate Design der fiktiven Marke Nuoto greift diese Frage auf. Analog mit Milchpapier und
+        dem Geodreieck entwickelt, entstand ein Erscheinungsbild, das Kälte, Tiefe sowie Bewegung vermittelt und auf
+        Tauchausrüstung klar erkennbar ist. Die Bildmarke zeigt einen Pinguin im Tauchflug – schlicht gestaltet,
+        prägnant und sinnbildlich für Zuverlässigkeit unter der Eisoberlfläche.`,
+        p6_infos: `INuoto<br>
+        2025<br><br>
+        ILLUSTRATION / BRANDING<br><br>
+        Dozent*innen:<br>
+        / Mauro Paolozzi<br>
+        / Lorenz Meier<br><br>
+        @ Fachklasse Grafik Luzern`,
+
+        /* ================= PROJECT 7 ================= */     
+        p7_titel: "61 Years Uldry x 61 Posters",
+        p7_text: `Mit Farbe zu arbeiten braucht Mut, Neugier und eine grosse Portion Experimentierfreude. Welche Farbschichten
+        übereinander was ergeben, entdeckt man erst, wenn man es ausprobiert. In der Siebdruckwerkstatt ist genau
+        das möglich: testen, mischen, überlagern, verwerfen und neu beginnen. Besonders mit Sonderfarben entstehen
+        Kombinationen, die man vorher nicht planen kann.
+        So ist ein kreatives, vielschichtiges Plakat entstanden – gestaltet gemeinsam mit meiner ganzen Stufe zum
+        60+1-Jubiläumsjahr der Uldry AG.`,
+        p7_infos: `61 Years Uldry x 61 Posters<br>
+        2025<br>
+        in Zusammenarbeit mit Uldry AG<br><br>
+
+        SIEBDRUCK / POSTERDESIGN<br><br>
+
+        Dozent*innen:<br>
+        / Martin Infanger<br><br>
+
+        @ Fachklasse Grafik Luzern`,
     },
-    
     en: {
         /* ================= PROJECT 1 ================= */
         p1_titel: "Out of Sight, Out of Mind?",
@@ -174,10 +207,40 @@ const projectTranslations = {
         / Martin Woodtli<br>
         / Martin Infanger<br><br>
         @ Graphic Design School Lucerne`, 
+        /* ================= PROJECT 6 ================= */     
+        p6_titel: "Identity in Depth",
+        p6_text: `What could the visual identity of a company that manufactures ice diving equipment for Antarctica look like?
+        The corporate design of the fictional brand Nuoto addresses this question. Developed analog with tracing paper
+        and a set square, a visual identity emerged that conveys cold, depth, and movement, and is clearly recognizable
+        on diving equipment. The logo features a penguin in a diving flight – simply designed, distinctive, and symbolic
+        of reliability beneath the ice surface.`,
+        p6_infos: `Nuoto<br>
+        2025<br><br>
+        ILLUSTRATION / BRANDING<br><br>
+        Lecturers:<br>
+        / Mauro Paolozzi<br>
+        / Lorenz Meier<br><br>
+        @ Graphic Design School Lucerne`,   
+        /* ================= PROJECT 7 ================= */     
+        p7_titel: "61 Years Uldry x 61 Posters",
+        p7_text: `Working with color requires courage, curiosity, and a large portion of experimental joy. You only discover
+        what layers of color yield when you try it out. In the screen printing workshop, this is exactly what is possible:
+        testing, mixing, overlaying, discarding, and starting anew. Especially with special colors, combinations arise
+        that cannot be planned beforehand.
+        Thus, a creative, multi-layered poster has emerged – designed together with my entire class for the
+        60+1 anniversary year of Uldry AG.`,
+        p7_infos: `61 Years Uldry x 61 Posters<br>
+        2025<br>
+        in collaboration with Uldry AG<br><br>
 
-   
-    }
-};
+        SCREEN PRINTING / POSTER DESIGN<br><br>
+
+        Lecturers:<br>
+        / Martin Infanger<br><br>
+
+       @ Graphic Design School Lucerne`,
+    } // Ende von 'en'
+}; // Ende von 'projectTranslations'
 
 
 
@@ -210,7 +273,7 @@ function applyTranslations() {
     // Wenn die Seite auf EN ist, soll der Button "DE" anzeigen.
     const langSwitch = document.getElementById("lang-switch");
     if (langSwitch) {
-        langSwitch.innerText = (lang === "de") ? "EN" : "DE";
+        langSwitch.innerText = (lang === "de") ? "DE/EN" : "EN/GER";
     }
 }
 
@@ -239,3 +302,4 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+

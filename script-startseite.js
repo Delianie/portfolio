@@ -1,4 +1,3 @@
-
 /* ============================================================
    STARTSEILE: SLIDER / MEDIA-CAROUSEL
 ============================================================ */
@@ -10,13 +9,13 @@ const images = [
 
     { src: "images-startseite/neu/8.webp", title: "61 Years Uldry x 61 Posters", title_de: "61 Years Uldry x 61 Posters", link: "html-project/07_prepress" },
 
-    { src: "images-startseite/neu/2.webp", title: "Portfolio by Delia Niederberger", title_de: "Portfolio von Delia Niederberger", link: "html-project/08_ich" },
+    { src: "images-startseite/neu/2.webp", title: "Portfolio by Delia Niederberger", title_de: "Portfolio von Delia Niederberger", link: "html-project/about" },
 
     { src: "images-startseite/neu/5.webp", title: "Typography from technology", title_de: "Typografie aus Technik", link: "html-project/03_ilustrarionfont" },
 
 
 
-
+    
     { src: "images-startseite/neu/6.webp", title: "Master project", title_de: "Masterprojekt", link: "html-project/02_master" },
 
     { src: "images-startseite/neu/3.webp", title: "Hidden sounds of London", title_de: "Versteckte Geräusche von London", link: "html-project/04_london" },
@@ -40,9 +39,8 @@ if (track && titleEl) {
         const link = document.createElement("a");
 
         // Sprache korrekt anhängen
-        const target = currentLang === "en" ? `${item.link}-en.html` : `${item.link}.html`;
+        link.href = item.link + ".html";
 
-        link.href = target;
         link.className = "media-wrapper";
 
         if (item.src.endsWith(".mp4")) {
@@ -110,10 +108,7 @@ if (track && titleEl) {
                 : images[logical].title_de;
 
         // Link im Titel auch nach Sprache
-        titleEl.href =
-            currentLang === "en"
-                ? `${images[logical].link}-en.html`
-                : `${images[logical].link}.html`;
+        titleEl.href = images[logical].link + ".html";
     }
 
     function scaleItems() {
