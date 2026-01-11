@@ -68,13 +68,6 @@ if (track && titleEl) {
     });
 
     function animate() {
-        // NEU: Auf dem Handy pausieren wir die JS-Transformation
-        if (window.innerWidth <= 600) {
-            requestAnimationFrame(animate);
-            updateText(); // Titel wird trotzdem basierend auf Scroll-Position aktualisiert
-            return; 
-        }
-
         pos += velocity;
         velocity *= 0.92;
 
@@ -135,6 +128,8 @@ if (track && titleEl) {
 
     animate();
 
+    animate();
+
     // DESKTOP: Wheel / Trackpad
     document.addEventListener("wheel", e => {
         if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
@@ -156,9 +151,6 @@ if (track && titleEl) {
     }, { passive: true });
 
     track.addEventListener("touchmove", e => {
-        // NEU: Auf dem Handy lassen wir das native Scrollen (für Snap) zu
-        if (window.innerWidth <= 600) return; 
-
         if (!isDragging) return;
 
         const currentX = e.touches[0].clientX;
