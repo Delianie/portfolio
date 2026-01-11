@@ -106,15 +106,35 @@ body {
 /* ========= MOBILE ========= */
 
 @media (max-width: 600px) {
+    .gallery-container {
+        /* Erlaubt dem Container auf Mobile zu scrollen */
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch; /* Sanftes Scrollen für iOS */
+        scroll-behavior: smooth;
+    }
+
+    .track {
+        /* Wir deaktivieren die absolute Positionierung für das native Snapping */
+        position: relative; 
+        transform: none !important; /* JS-Transform auf Mobile ignorieren */
+    }
 
     .media-wrapper {
         width: 100vw;
-        /* mobil: 1 Medium pro Ansicht */
+        height: 100vh;
+        scroll-snap-align: center;
+        scroll-snap-stop: always; /* Verhindert das "Überfliegen" mehrerer Bilder */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-
-    .overlay-wrapper {
-        flex-direction: column;
-        text-align: center;
+    
+    .media-wrapper img, 
+    .media-wrapper video {
+        width: 90vw; /* Etwas kleiner, damit es schöner aussieht */
+        height: auto;
+        max-height: 80vh;
     }
 }
 
