@@ -4,7 +4,7 @@
 
 const images = [
 
-    { src: "images-startseite/neu/7.webp", title: "Out of sight, out of mind?", title_de: "Aus dem Auge, aus dem Sinn?", link: "html-project/01_blickwechselplakat" },
+    { src: "images-startseite/neu/7.2.webp", title: "Out of sight, out of mind?", title_de: "Aus dem Auge, aus dem Sinn?", link: "html-project/01_blickwechselplakat" },
 
     { src: "images-startseite/neu/8.webp", title: "61 Years Uldry x 61 Posters", title_de: "61 Years Uldry x 61 Posters", link: "html-project/07_prepress" },
 
@@ -14,12 +14,13 @@ const images = [
 
 
     
-    { src: "images-startseite/neu/6.webp", title: "Master project", title_de: "Masterprojekt", link: "html-project/02_master" },
+    { src: "images-startseite/neu/02.mp4", title: "Master project", title_de: "Masterprojekt", link: "html-project/02_master" },
 
-    { src: "images-startseite/neu/3.webp", title: "Hidden sounds of London", title_de: "Versteckte Geräusche von London", link: "html-project/04_london" },
+    { src: "images-startseite/neu/3.2.webp", title: "Hidden sounds of London", title_de: "Versteckte Geräusche von London", link: "html-project/04_london" },
 
-    { src: "images-startseite/neu/4.webp", title: "Swiss typography reinterpreted", title_de: "Neuinterpretation der Schweizer Typografie", link: "html-project/05_motiontype" },
-    { src: "images-startseite/neu/1.webp", title: "Intensity in depth", title_de: "Intensität in der Tiefe", link: "html-project/06_bildwort" }
+    { src: "images-startseite/neu/01.mp4", title: "Swiss typography reinterpreted", title_de: "Neuinterpretation der Schweizer Typografie", link: "html-project/05_motiontype" },
+    
+    { src: "images-startseite/neu/1.2.webp", title: "Intensity in depth", title_de: "Intensität in der Tiefe", link: "html-project/06_bildwort" }
 ];
 
 const track = document.getElementById("track");
@@ -248,4 +249,11 @@ document.addEventListener("mousemove", (e) => {
 
     box.textContent = `x: ${e.clientX}px | y: ${e.clientY}px`;
 });
+
+window.addEventListener("scroll", () => {
+    const teaser = document.querySelector(".bild-breit");
+    if (!teaser) return;
+
+    teaser.style.animation = "none";
+}, { once: true });
 

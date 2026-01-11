@@ -52,7 +52,7 @@ body {
 .media-wrapper img,
 .media-wrapper video {
     height: auto;      /* Höhe fix */
-    width: 400px;       /* Breite automatisch → korrektes Verhältnis */
+    width: 480px;       /* Breite automatisch → korrektes Verhältnis */
     object-fit: contain;
     gap: 20px;
 }

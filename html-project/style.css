@@ -377,6 +377,20 @@ a:hover,
     position: relative;
     z-index: 3;
     background-color: #ffffff;
+    animation: scrollTeaser 3s ease-in-out infinite;
+
+}
+/* Teaser-Animation */
+@keyframes scrollTeaser {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-50px); /* kommt leicht nach oben */
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
 
 /* Bild-Grid */
