@@ -4,7 +4,6 @@
 
 const images = [
 
-
     { src: "images-startseite/neu/7.webp", title: "Out of sight, out of mind?", title_de: "Aus dem Auge, aus dem Sinn?", link: "html-project/01_blickwechselplakat" },
 
     { src: "images-startseite/neu/8.webp", title: "61 Years Uldry x 61 Posters", title_de: "61 Years Uldry x 61 Posters", link: "html-project/07_prepress" },
@@ -12,7 +11,6 @@ const images = [
     { src: "images-startseite/neu/2.webp", title: "Portfolio by Delia Niederberger", title_de: "Portfolio von Delia Niederberger", link: "html-project/about" },
 
     { src: "images-startseite/neu/5.webp", title: "Typography from technology", title_de: "Typografie aus Technik", link: "html-project/03_ilustrarionfont" },
-
 
 
     
@@ -175,7 +173,6 @@ if (track && titleEl) {
 
 }
 
-
 /* ============================================================
    MODE SWITCH (Normal, Dark, Vector)
 ============================================================ */
@@ -208,7 +205,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
 /* ============================================================
    VECTOR MODE SCANLINES
 ============================================================ */
@@ -232,7 +228,6 @@ document.addEventListener("mousemove", e => {
     ly.style.left = `${e.clientX}px`;
 });
 
-
 /* ============================================================
    VECTOR MODE COORDINATES
 ============================================================ */
@@ -253,3 +248,4 @@ document.addEventListener("mousemove", (e) => {
 
     box.textContent = `x: ${e.clientX}px | y: ${e.clientY}px`;
 });
+
