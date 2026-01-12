@@ -176,12 +176,9 @@ const projectTranslations = {
         /* ================= PROJECT 2 ================= */
         p2_titel: "Seeing Music",
         p2_text: `How can one make music visible? My project began with simple experiments: analog on paper,
-        digital with the camera, with liquids and stop-motion. Soon it became clear how closely music and
+        digital with the camera, with liquids and stop motion. Soon it became clear how closely music and
         design are connected – both are based on rhythm, tempo, and movement. This connection forms the basis
-        of my poster.<br><br>
-        It was created from analog scans of transparent paper, which I layer and digitally process further.
-        A short animation complements the idea of movement. The black-and-white look focuses attention on forms
-        and processes, showing how music can be experienced as movement within an image.`,
+        of my poster.`,
         p2_infos: `Master's Final Concerts<br>
         2025<br>
         in collaboration with HSLU<br><br>
