@@ -25,22 +25,20 @@ const projectTranslations = {
         /* ================= PROJECT 2 ================= */
         p2_titel: "Musik sehen",
         p2_text: `Wie kann man Musik sichtbar machen? Mein Projekt begann mit einfachen Experimenten: analog auf Papier,
-        digital mit der Kamera, mit Flüssigkeiten und Stop-Motion. Schon bald wurde deutlich, wie eng Musik und
+        digital mit der Kamera, mit Flüssigkeiten und Stop Motion. Schon bald wurde deutlich, wie eng Musik und
         Gestaltung miteinander verbunden sind – beide basieren auf Rhythmus, Tempo und Bewegung. Diese Verbindung
-        bildet die Grundlage meines Plakats.<br><br>
-        Es entstand aus analogen Scans von Transparentpapier, die ich übereinanderlege und digital weiterbearbeite.
-        Eine kurze Animation ergänzt die Idee der Bewegung. Der Schwarz-Weiss-Look rückt Formen und Prozesse in den
-        Fokus und zeigt, wie Musik als Bewegung innerhalb eines Bildes erfahrbar werden kann.`,
-        p2_infos: `Masterabschlusskonzerte<br>
-        2025<br>
-        in Zusammenarbeit mit HSLU<br><br>
-        POSTERDESIGN / FOTOGRAFIE / ANIMATION<br><br>
-        Dozent*innen:<br>
-        / Martin Woodtli<br>
-        / Martin Infanger<br>
-        / Felix Pfäffli<br>
-        / Zvonimir Pisonic<br><br>
-        @ Fachklasse Grafik Luzern`,
+        bildet die Grundlage meines Plakats.<br><br>`,
+        p2_infos: ` Masterabschlusskonzerte<br>
+            2025<br>
+            in Zusammenarbeit mit HSLU<br><br>
+
+            POSTER DESIGN / EXPERIMENT / MOTION<br><br>
+
+            Dozent*innen:<br>
+            / Kaspar Flückiger<br>
+            / Flavia Mosele<br><br>
+
+            @ Fachklasse Grafik Luzern`,
 
         /* ================= PROJECT 3 ================= */
         p3_titel: "Typografie aus Technik",
@@ -64,14 +62,17 @@ const projectTranslations = {
         Bilder verraten nicht, welchem Tier sie gehören. Tiergeräusche werden zum Leitmotiv, Dialoge beginnen mit
         Lauten von Vögeln, Füchsen oder Igeln. So entsteht ein abstraktes, lebendiges London.`,
         p4_infos: `Hidden Sounds of London<br>
-        2025<br><br>
-        BUCHGESTALTUNG / FOTOGRAFIE / ANIMATION<br><br>
-        Dozent*innen:<br>
-        / Martin Woodtli<br>
-        / Martin Infanger<br>
-        / Felix Pfäffli<br>
-        / Zvonimir Pisonic<br><br>
-        @ Fachklasse Grafik Luzern`,
+            2025<br><br>
+
+            EDITORIAL / FO TOGRAFIE / BUCHBINDEN<br><br>
+
+            Dozent*innen:<br>
+            / Markus Wiki<br>
+            / Silvio Waser<br>
+            / Valeria Bongini<br>
+            / Siiri Tännler<br><br>
+
+            @ Fachklasse Grafik Luzern`,
 
         /* ================= PROJECT 5 ================= */
         p5_titel: "Neuinterpretation Schweizer Typografie",
@@ -95,8 +96,8 @@ const projectTranslations = {
         herstellt? Das Corporate Design der fiktiven Marke Nuoto greift diese Frage auf. Analog mit Milchpapier und
         dem Geodreieck entwickelt, entstand ein Erscheinungsbild, das Kälte, Tiefe sowie Bewegung vermittelt und auf
         Tauchausrüstung klar erkennbar ist. Die Bildmarke zeigt einen Pinguin im Tauchflug – schlicht gestaltet,
-        prägnant und sinnbildlich für Zuverlässigkeit unter der Eisoberlfläche.`,
-        p6_infos: `INuoto<br>
+        prägnant und sinnbildlich für Zuverlässigkeit unter der Eisoberfläche.`,
+        p6_infos: `Nuoto<br>
         2025<br><br>
         ILLUSTRATION / BRANDING<br><br>
         Dozent*innen:<br>
@@ -122,6 +123,36 @@ const projectTranslations = {
         / Martin Infanger<br><br>
 
         @ Fachklasse Grafik Luzern`,
+
+        /* ================= ABOUT ME ================= */
+        about_titel: "Über mich",
+        about_text: `Hey, ich bin Delia, 2008 in der Schweiz geboren und eine angehende Grafikerin, die sich von Sport, Natur und
+            Zahlen inspirieren lässt.
+            Ich liebe Design mit klaren Systemen und logischen Strukturen – von harmonischen Verhältnissen bis zu
+            präzise aufgebauten Animationen.
+
+            Besonders fasziniert mich, wie Gestaltung unseren Alltag ganz unbewusst formt und beeinflusst. Ideen visuell
+            umzusetzen, Lösungen zu finden und dabei Ästhetik mit Funktion zu verbinden, macht für mich gutes Design
+            aus.<br>
+
+            Wenn du Fragen oder Anliegen hast, kannst du mir gerne eine Mail schreiben :) <br><br>
+            delianiederberger@gmail.ch<br>@d.nie.graphic `,
+        about_infos: `
+            PROGRAMMKENNTNISSE:<br>
+            InDesign<br>
+            Illustrator<br>
+            Photoshop<br>
+            Figma<br>
+            Lightroom Classic<br>
+            Visual Studio Code<br>
+            After Effects<br><br>
+
+            SPRACHEN:<br>
+            Schweizerdeutsch / Deutsch — Muttersprache<br>
+            Englisch — B2<br>
+            Französisch — A2–B1<br><br>
+
+            @ Delia Niederberger`,
     },
     en: {
         /* ================= PROJECT 1 ================= */
@@ -140,7 +171,7 @@ const projectTranslations = {
         / Martin Infanger<br>
         / Felix Pfäffli<br>
         / Zvonimir Pisonic<br><br>
-        @ Graphic Design School Lucerne`,
+        @ Fachklasse Grafik Luzerne`,
 
         /* ================= PROJECT 2 ================= */
         p2_titel: "Seeing Music",
@@ -156,11 +187,10 @@ const projectTranslations = {
         in collaboration with HSLU<br><br>
         POSTER DESIGN / PHOTOGRAPHY / ANIMATION<br><br>
         Lecturers:<br>
-        / Martin Woodtli<br>
-        / Martin Infanger<br>
-        / Felix Pfäffli<br>
-        / Zvonimir Pisonic<br><br>
-        @ Graphic Design School Lucerne`,
+        / Kaspar Flückiger<br>
+            / Flavia Mosele<br><br>
+
+            @ Fachklasse Grafik Luzern`,
 
         /* ================= PROJECT 3 ================= */
         p3_titel: "Typography from Technology",
@@ -175,7 +205,7 @@ const projectTranslations = {
         ILLUSTRATION / FONT DESIGN<br><br>
         Lecturers:<br>
         / Mauro Paolozzi<br><br>
-        @ Graphic Design School Lucerne`,
+        @ Fachklasse Grafik Luzern`,
 
         /* ================= PROJECT 4 ================= */
         p4_titel: "Hidden Sounds of London",
@@ -185,13 +215,14 @@ const projectTranslations = {
         of birds, foxes, or hedgehogs. Thus, an abstract, lively London is created.`,
         p4_infos: `Hidden Sounds of London<br>
         2025<br><br>
-        BOOK DESIGN / PHOTOGRAPHY / ANIMATION<br><br>
+        BOOK DESIGN / PHOTOGRAPHY / BOOKBINDING<br><br>
         Lecturers:<br>
-        / Martin Woodtli<br>
-        / Martin Infanger<br>
-        / Felix Pfäffli<br>
-        / Zvonimir Pisonic<br><br>
-        @ Graphic Design School Lucerne`,  
+        / Markus Wiki<br>
+            / Silvio Waser<br>
+            / Valeria Bongini<br>
+            / Siiri Tännler<br><br>
+
+            @ Fachklasse Grafik Luzern`,  
         /* ================= PROJECT 5 ================= */
         p5_titel: "Reinterpretation of Swiss Typography",
         p5_text: `Animated typography opens up new perspectives on classical design. The minimalist works of
@@ -204,9 +235,9 @@ const projectTranslations = {
         2024<br><br>
         ANIMATION / MOTION DESIGN<br><br>
         Lecturers:<br>
-        / Martin Woodtli<br>
+       / Martin Woodtli<br>
         / Martin Infanger<br><br>
-        @ Graphic Design School Lucerne`, 
+        @ Fachklasse Grafik Luzern`, 
         /* ================= PROJECT 6 ================= */     
         p6_titel: "Identity in Depth",
         p6_text: `What could the visual identity of a company that manufactures ice diving equipment for Antarctica look like?
@@ -220,7 +251,7 @@ const projectTranslations = {
         Lecturers:<br>
         / Mauro Paolozzi<br>
         / Lorenz Meier<br><br>
-        @ Graphic Design School Lucerne`,   
+        @ Fachklasse Grafik Luzern`,   
         /* ================= PROJECT 7 ================= */     
         p7_titel: "61 Years Uldry x 61 Posters",
         p7_text: `Working with color requires courage, curiosity, and a large portion of experimental joy. You only discover
@@ -238,7 +269,39 @@ const projectTranslations = {
         Lecturers:<br>
         / Martin Infanger<br><br>
 
-       @ Graphic Design School Lucerne`,
+        @ Fachklasse Grafik Luzern`,
+
+        /* ================= ABOUT ME ================= */
+        about_titel: "About Me",
+        about_text: `Hey, I'm Delia, born in Switzerland in 2008 and an aspiring graphic designer inspired by sports, nature,
+            and numbers.
+            I love design with clear systems and logical structures, from harmonious proportions to precisely crafted
+            animations.
+
+            I'm especially fascinated by how design shapes and influences our everyday lives, often without us noticing
+            it.
+            Turning ideas into visual concepts, finding solutions, and combining aesthetics with function — that’s what
+            good design means to me.<br>
+
+            If you have any questions or inquiries, feel free to send me an email :)<br><br>
+            delianiederberger@gmail.ch<br>@d.nie.graphic`  , 
+        about_infos: `
+            SOFTWARE SKILLS:<br>
+            InDesign<br>
+            Illustrator<br>
+            Photoshop<br>
+            Figma<br>
+            Lightroom Classic<br>
+            Visual Studio Code<br>
+            After Effects<br><br>
+
+            LANGUAGES:<br>
+            Swiss German / German — Native<br>
+            English — B2<br>
+            French — A2–B1<br><br>
+
+            @ Delia Niederberger`,
+
     } // Ende von 'en'
 }; // Ende von 'projectTranslations'
 
