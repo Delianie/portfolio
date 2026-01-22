@@ -5,12 +5,14 @@
 const images = [
 
     { src: "images-startseite/neu/1.2.webp", title: "Intensity in depth", title_de: "Intensität in der Tiefe", link: "html-project/06_bildwort" },
-    
+
     { src: "images-startseite/neu/2.webp", title: "Portfolio by Delia Niederberger", title_de: "Portfolio von Delia Niederberger", link: "html-project/about" },
 
     { src: "images-startseite/neu/5.webp", title: "Typography from technology", title_de: "Typografie aus Technik", link: "html-project/03_ilustrarionfont" },
 
     { src: "images-startseite/neu/02.mp4", title: "Master project", title_de: "Masterprojekt", link: "html-project/02_master" },
+
+    { src: "images-startseite/neu/9.webp", title: "Out of sight, out of mind?", title_de: "Aus dem Auge, aus dem Sinn?", link: "html-project/kampange" },
 
     { src: "images-startseite/neu/3.2.webp", title: "Hidden sounds of London", title_de: "Versteckte Geräusche von London", link: "html-project/04_london" },
 
@@ -19,6 +21,7 @@ const images = [
     { src: "images-startseite/neu/8.2.webp", title: "61 Years Uldry x 61 Posters", title_de: "61 Years Uldry x 61 Posters", link: "html-project/07_prepress" },
 
     { src: "images-startseite/neu/7.2.webp", title: "Out of sight, out of mind?", title_de: "Aus dem Auge, aus dem Sinn?", link: "html-project/01_blickwechselplakat" },
+
 
 ];
 
@@ -43,14 +46,26 @@ if (track && titleEl) {
 
         if (item.src.endsWith(".mp4")) {
             const v = document.createElement("video");
+
             v.src = item.src;
             v.autoplay = true;
             v.loop = true;
             v.muted = true;
+            v.playsInline = true;
+            v.preload = "auto";
+            v.disablePictureInPicture = true;
+
+            v.addEventListener("canplay", () => {
+                v.play().catch(() => { });
+            });
+
+            v.load();
+
             link.appendChild(v);
         } else {
             const img = document.createElement("img");
             img.src = item.src;
+            img.loading = "eager"; // Startseite → sofort laden
             link.appendChild(img);
         }
 
@@ -119,7 +134,7 @@ if (track && titleEl) {
             const dist = Math.abs(center - mid);
 
             const t = Math.min(dist / center, 1);
-            const scale = 1 + 0.25 * (t * t);
+            const scale = 1 + 0.30 * (t * t);
             m.style.transform = `scale(${scale})`;
         }
     }

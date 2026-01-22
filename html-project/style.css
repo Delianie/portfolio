@@ -292,6 +292,8 @@ a:hover,
 ============================================================ */
 
 .layout {
+    min-height: 100vh;
+    height: auto;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     column-gap: 15px;
@@ -351,6 +353,7 @@ a:hover,
     align-self: end;
     grid-row: 3;
     margin-top: auto;
+    padding-bottom: 40px
 }
 
 

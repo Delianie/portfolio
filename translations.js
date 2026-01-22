@@ -153,6 +153,18 @@ const projectTranslations = {
             Französisch — A2–B1<br><br>
 
             @ Delia Niederberger`,
+
+            /* ================= kampange ================= */    
+        kampange_titel: "Mietexplosion stoppen!",
+        kampange_text: `Häuser wackeln – nicht nur in der Visualisierung, sondern auch in der Realität. Wenn Mieten explodieren und
+            Investoren auf Rendite statt Lebensqualität spekulieren, wird Wohnraum vom Grundrecht zum Luxusgut. <br>
+            Basierend auf Mietpreis-Statistiken des Kantons Luzern verdeutlicht diese Kampagne die Dringlichkeit des
+            Handlungsbedarfs. Ein abstrakter, roter Pfeil bricht durch das visuelle Wohnchaos aus gerasterten Collagen
+            und wackelnden Fassaden. Sozial, mutig und empört – ein gestalterisches Plädoyer für bezahlbaren Wohnraum
+            und gegen die Gewinnmaximierung auf Kosten der Mieter*innen.`,
+        kampange_infos: `  Mietexplosion stoppen!<br> 2026<br> Kampagne Vorschlag für die SP Kanton Luzern<br><br> POSTERDESIGN /
+            ANIMATION / WEB <br><br> Dozent*innen:<br> / Felix Pfäffli<br> / Simon Roth<br> <br><br> @ Fachklasse Grafik
+            Luzern`,
     },
     en: {
         /* ================= PROJECT 1 ================= */
@@ -298,6 +310,20 @@ const projectTranslations = {
             French — A2–B1<br><br>
 
             @ Delia Niederberger`,
+        /* ================= kampange ================= */
+
+    /* ================= CAMPAIGN ================= */
+        kampange_titel_title: "Stop the Rent Explosion!",
+        kampange_text: `Buildings are shaking—not just in the visualization, but in reality. When rents skyrocket and 
+            investors speculate on returns instead of quality of life, housing is transformed from a basic right into 
+            a luxury good. <br>
+            Based on rent price statistics from the Canton of Lucerne, this campaign highlights the urgency for 
+            action. An abstract red arrow breaks through a visual chaos of halftone collages and 
+            trembling facades. Social, bold, and indignant—a creative plea for affordable housing 
+            and against profit maximization at the expense of tenants.`,
+        kampange_infos: `  Stop the Rent Explosion!<br> 2026<br> Campaign proposal for the SP Canton of Lucerne<br><br> POSTER DESIGN /
+            ANIMATION / WEB <br><br> Lecturers:<br> / Felix Pfäffli<br> / Simon Roth<br> <br><br> @ Fachklasse Grafik
+            Luzern`,
 
     } // Ende von 'en'
 }; // Ende von 'projectTranslations'
