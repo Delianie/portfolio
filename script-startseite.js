@@ -12,7 +12,7 @@ const images = [
 
     { src: "images-startseite/neu/02.mp4", title: "Master project", title_de: "Masterprojekt", link: "html-project/02_master" },
 
-    { src: "images-startseite/neu/9.webp", title: "Out of sight, out of mind?", title_de: "Aus dem Auge, aus dem Sinn?", link: "html-project/kampange" },
+    { src: "images-startseite/neu/9.webp", title: "Stop the Rent Explosion", title_de: "Mietexplosion stoppen!", link: "html-project/kampange" },
 
     { src: "images-startseite/neu/3.2.webp", title: "Hidden sounds of London", title_de: "Versteckte Geräusche von London", link: "html-project/04_london" },
 
@@ -154,36 +154,27 @@ if (track && titleEl) {
 
     // MOBILE: Touch / Swipe
     let touchStartX = 0;
-    let touchStartY = 0;
-    let isDragging = false;
+    let lastTouchX = 0;
 
+    // Mobile: direktes Dragging + sanfte Trägheit
     track.addEventListener("touchstart", e => {
         touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-        isDragging = true;
+        lastTouchX = touchStartX;
+        velocity = 0; // alte Trägheit stoppen
     }, { passive: true });
 
     track.addEventListener("touchmove", e => {
-        if (!isDragging) return;
-
         const currentX = e.touches[0].clientX;
-        const currentY = e.touches[0].clientY;
+        const dx = lastTouchX - currentX;
 
-        const diffX = touchStartX - currentX;
-        const diffY = touchStartY - currentY;
+        pos += dx / imgWidth;   // 1:1 Dragging
+        lastTouchX = currentX;
 
-        // Horizontale Bewegung stärker → Slider ziehen
-        if (Math.abs(diffX) > Math.abs(diffY)) {
-            e.preventDefault();              // Blockiert Seiten-Scrollen
-            velocity += diffX * 0.02;        // Geschwindigkeit
-        }
-
-        touchStartX = currentX;
-        touchStartY = currentY;
+        e.preventDefault();
     }, { passive: false });
 
     track.addEventListener("touchend", () => {
-        isDragging = false;
+        velocity = (touchStartX - lastTouchX) * 0.01; // sanfter Nachlauf
     });
 
 }
