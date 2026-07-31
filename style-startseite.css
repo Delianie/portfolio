@@ -120,6 +120,33 @@ body {
     
 }
 
+@media (max-width: 600px) and (orientation: portrait) {
+
+    .track {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+    }
+
+    .media-wrapper {
+        width: 100vw;
+        height: 320px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .media-wrapper img,
+    .media-wrapper video {
+        height: 280px;
+        width: auto;
+        object-fit: contain;
+    }
+
+    .overlay-wrapper {
+        bottom: 1rem;
+    }
+}
+
 #preloader {
     position: fixed;
     inset: 0;
@@ -132,4 +159,3 @@ body {
     font-size: 15px;
     z-index: 9999;
 }
-

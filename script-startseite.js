@@ -28,6 +28,10 @@ const images = [
 const track = document.getElementById("track");
 const titleEl = document.getElementById("title");
 
+function isPortraitMobile() {
+    return window.innerWidth <= 600 && window.innerHeight > window.innerWidth;
+}
+
 // Hole Sprache – sehr wichtig
 const currentLang = localStorage.getItem("siteLang") || "de";
 
@@ -74,10 +78,10 @@ if (track && titleEl) {
 
     let pos = 100;
     let velocity = 0;
-    let imgWidth = window.innerWidth < 600 ? window.innerWidth : window.innerWidth / 3;
+    let itemSize = isPortraitMobile() ? 320 : (window.innerWidth < 600 ? window.innerWidth : window.innerWidth / 3);
 
     window.addEventListener("resize", () => {
-        imgWidth = window.innerWidth < 600 ? window.innerWidth : window.innerWidth / 3;
+        itemSize = isPortraitMobile() ? 320 : (window.innerWidth < 600 ? window.innerWidth : window.innerWidth / 3);
     });
 
     function animate() {
@@ -87,7 +91,11 @@ if (track && titleEl) {
         const max = original * totalLoops;
         pos = ((pos % max) + max) % max;
 
-        track.style.transform = `translateX(${-pos * imgWidth}px)`;
+        if (isPortraitMobile()) {
+            track.style.transform = `translateY(${-pos * itemSize}px)`;
+        } else {
+            track.style.transform = `translateX(${-pos * itemSize}px)`;
+        }
 
         updateText();
         scaleItems();
@@ -97,14 +105,17 @@ if (track && titleEl) {
 
     function updateText() {
         const media = track.children;
-        const center = window.innerWidth / 2;
+        const portrait = isPortraitMobile();
+        const center = portrait ? window.innerHeight / 2 : window.innerWidth / 2;
 
         let closest = 0;
         let smallest = Infinity;
 
         for (let i = 0; i < media.length; i++) {
             const r = media[i].getBoundingClientRect();
-            const mid = r.left + r.width / 2;
+            const mid = portrait
+                ? r.top + r.height / 2
+                : r.left + r.width / 2;
             const diff = Math.abs(center - mid);
             if (diff < smallest) {
                 smallest = diff;
@@ -113,6 +124,12 @@ if (track && titleEl) {
         }
 
         const logical = closest % original;
+
+        if (portrait) {
+            titleEl.innerHTML = "SCROLL<br>+ CLICK";
+            titleEl.removeAttribute("href");
+            return;
+        }
 
         // Titel je nach Sprache
         titleEl.textContent =
@@ -126,11 +143,14 @@ if (track && titleEl) {
 
     function scaleItems() {
         const media = track.children;
-        const center = window.innerWidth / 2;
+        const portrait = isPortraitMobile();
+        const center = portrait ? window.innerHeight / 2 : window.innerWidth / 2;
 
         for (let m of media) {
             const r = m.getBoundingClientRect();
-            const mid = r.left + r.width / 2;
+            const mid = portrait
+                ? r.top + r.height / 2
+                : r.left + r.width / 2;
             const dist = Math.abs(center - mid);
 
             const t = Math.min(dist / center, 1);
@@ -145,39 +165,44 @@ if (track && titleEl) {
 
     // DESKTOP: Wheel / Trackpad
     document.addEventListener("wheel", e => {
-        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-            velocity += e.deltaX * 0.002;
-        } else {
+        if (isPortraitMobile()) {
             velocity += e.deltaY * 0.002;
+        } else {
+            if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+                velocity += e.deltaX * 0.002;
+            } else {
+                velocity += e.deltaY * 0.002;
+            }
         }
     });
 
     // MOBILE: Touch / Swipe
-    let touchStartX = 0;
-    let lastTouchX = 0;
+    let touchStart = 0;
+    let lastTouch = 0;
 
     // Mobile: direktes Dragging + sanfte Trägheit
     track.addEventListener("touchstart", e => {
-        touchStartX = e.touches[0].clientX;
-        lastTouchX = touchStartX;
+        const portrait = isPortraitMobile();
+        touchStart = portrait ? e.touches[0].clientY : e.touches[0].clientX;
+        lastTouch = touchStart;
         velocity = 0; // alte Trägheit stoppen
     }, { passive: true });
 
     track.addEventListener("touchmove", e => {
-        const currentX = e.touches[0].clientX;
-        const dx = lastTouchX - currentX;
-
-        pos += dx / imgWidth;   // 1:1 Dragging
-        lastTouchX = currentX;
-
+        const portrait = isPortraitMobile();
+        const current = portrait ? e.touches[0].clientY : e.touches[0].clientX;
+        const d = lastTouch - current;
+        pos += d / itemSize;   // 1:1 Dragging
+        lastTouch = current;
         e.preventDefault();
     }, { passive: false });
 
     track.addEventListener("touchend", () => {
-        velocity = (touchStartX - lastTouchX) * 0.01; // sanfter Nachlauf
+        velocity = (touchStart - lastTouch) * 0.01; // sanfter Nachlauf
     });
 
 }
+
 
 /* ============================================================
    MODE SWITCH (Normal, Dark, Vector)
@@ -261,4 +286,3 @@ window.addEventListener("scroll", () => {
 
     teaser.style.animation = "none";
 }, { once: true });
-
