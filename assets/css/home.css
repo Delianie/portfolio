@@ -149,6 +149,7 @@ body {
         bottom: auto;
         top: 50%;
         transform: translateY(-50%);
+        font-size: 10pt;
     }
 
     .mobile-break {
