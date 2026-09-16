@@ -201,52 +201,70 @@ const slider = {
     addDrag() {
 
         let dragging = false;
-        let last = 0;
+        let lastCoord = 0;
+        let lastTime = 0;
+        let flingVelocity = 0;
 
         const getCoord = e => {
-            if (this.direction === "horizontal") {
-                return e.touches ? e.touches[0].clientX : e.clientX;
-            } else {
-                return e.touches ? e.touches[0].clientY : e.clientY;
-            }
+            const point = e.touches ? e.touches[0] : e;
+            return this.direction === "horizontal" ? point.clientX : point.clientY;
         };
 
         const down = coord => {
             dragging = true;
-            last = coord;
+            lastCoord = coord;
+            lastTime = performance.now();
+            flingVelocity = 0;
             this.velocity = 0;
         };
 
         const move = coord => {
             if (!dragging) return;
-            const delta = last - coord;
+
+            const now = performance.now();
+            const dt = now - lastTime;
+            const delta = lastCoord - coord;
+
             this.position += delta;
-            last = coord;
+
+            if (dt > 0) {
+                flingVelocity = (delta / dt) * 16.67;
+            }
+
+            lastCoord = coord;
+            lastTime = now;
         };
 
-        this.track.addEventListener("touchstart", e => {
+        const up = () => {
+            if (!dragging) return;
+            dragging = false;
+            this.velocity = flingVelocity * 1.4;
+        };
+
+        document.addEventListener("touchstart", e => {
             down(getCoord(e));
         }, { passive: true });
 
-        this.track.addEventListener("touchmove", e => {
+        document.addEventListener("touchmove", e => {
             move(getCoord(e));
-        }, { passive: true });
+            e.preventDefault();
+        }, { passive: false });
 
-        this.track.addEventListener("touchend", () => {
-            dragging = false;
+        document.addEventListener("touchend", () => {
+            up();
         });
 
-        this.track.addEventListener("mousedown", e => {
+        document.addEventListener("mousedown", e => {
             down(getCoord(e));
             e.preventDefault();
         });
 
         window.addEventListener("mousemove", e => {
-            if (dragging) move(getCoord(e));
+            move(getCoord(e));
         });
 
         window.addEventListener("mouseup", () => {
-            dragging = false;
+            up();
         });
 
     },

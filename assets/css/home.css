@@ -28,6 +28,7 @@ body {
     background: #fff;
     display: flex;
     align-items: flex-start;
+    touch-action: none;
 }
 
 .track {
