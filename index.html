@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style-startseite.css" />
-    <title>Delia Niederberger - Graphic Design Portfolio</title>
-    
-    <meta name="keywords" content="Delia Niederberger, Graphic Design, Portfolio..." />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Delia Niederberger – Graphic Design Portfolio</title>
+
+    <link rel="stylesheet" href="assets/css/home.css">
+
+    <meta name="keywords" content="Delia Niederberger, Graphic Design, Portfolio">
     <meta name="description" content="Graphic design portfolio by Delia Niederberger. Feel free to judge. :)">
-    <meta property="og:title" content="Delia Niederberger - Graphic Design Portfolio" />
-    <meta property="og:url" content="https://delianiederberger.ch" />
-    <meta property="og:image" content="https://delianiederberger.ch/portfolio/imgs/websiteimg.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="800" />
 
-   <!-- Für Browser-Tabs -->
-    <link rel="icon" type="image/png" href="/imgs/favicon.png" sizes="32x32">
+    <meta property="og:title" content="Delia Niederberger – Graphic Design Portfolio">
+    <meta property="og:url" content="https://delianiederberger.ch">
+    <meta property="og:image" content="https://delianiederberger.ch/portfolio/imgs/websiteimg.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="800">
 
-    <!-- Für Google & generell -->
+    <link rel="icon" href="/imgs/favicon.png" type="image/png" sizes="32x32">
     <link rel="icon" href="/imgs/favicon-96.png" type="image/png">
 </head>
-
-<body>
-    </body>
-</html>
 
 <body>
 
@@ -31,28 +28,17 @@
         <div id="counter">0/100</div>
     </div>
 
-    <div class="gallery-container">
-        <div class="track" id="track"></div>
+    <main class="gallery-container">
 
-        <div class="overlay-wrapper">
-            <a id="title" class="title" href=""></a>
-            <div id="subtitle"></div>
-        </div>
+        <!-- Wird komplett durch JavaScript erzeugt -->
+        <div id="track" class="track"></div>
 
-    </div>
+        <div id="under-construction">//UNDER<br class="mobile-break"> CONSTRUCTION</div>
 
-    <div id="slider-container">
-        <div id="track"></div>
+    </main>
 
-        <a id="title" href="#" target="_self"></a>
-        <div id="subtitle"></div>
-    </div>
-
-    <!-- 🔥 WICHTIG: Preloader-Script kommt HIER hin -->
-    <script src="preloader.js"></script>
-
-    <!-- 🔽 Dein eigentliches Script danach -->
-    <script src="script-startseite.js"></script>
+    <script src="assets/js/preloader.js"></script>
+    <script type="module" src="assets/js/app.js"></script>
 
 </body>
 

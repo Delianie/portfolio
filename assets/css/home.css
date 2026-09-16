@@ -1,0 +1,158 @@
+/* ============================================================
+   BASE
+============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #fff;
+}
+
+/* ============================================================
+   SLIDER
+============================================================ */
+
+.gallery-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #fff;
+    display: flex;
+    align-items: flex-start;
+}
+
+.track {
+    display: flex;
+    align-items: flex-start;
+    will-change: transform;
+}
+
+/* ============================================================
+   SLIDES
+============================================================ */
+
+.media-wrapper {
+    flex: 0 0 auto;
+    background: #fff;
+    display: block;
+}
+
+.track.horizontal .media-wrapper {
+    width: var(--slot-width, 25vw);
+}
+
+.track.horizontal .media-wrapper img,
+.track.horizontal .media-wrapper video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.track.vertical .media-wrapper {
+    height: var(--slot-height, 25vh);
+}
+
+.track.vertical .media-wrapper img,
+.track.vertical .media-wrapper video {
+    height: 100%;
+    width: auto;
+    display: block;
+}
+
+.media-wrapper:hover {
+    cursor: pointer;
+}
+
+/* ============================================================
+   TITLE
+============================================================ */
+
+.overlay-wrapper {
+    position: absolute;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+#title {
+    font-family: "Fragment Mono", monospace;
+    font-size: 11px;
+    color: #000;
+    text-transform: uppercase;
+    text-decoration: none;
+    pointer-events: auto;
+}
+
+#title:hover {
+    letter-spacing: .5px;
+}
+
+#subtitle {
+    display: none;
+}
+
+/* ============================================================
+   PRELOADER
+============================================================ */
+
+#preloader {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    z-index: 9999;
+
+    font-family: "Fragment Mono", monospace;
+    font-size: 15px;
+}
+
+/* ============================================================
+   UNDER CONSTRUCTION
+============================================================ */
+
+#under-construction {
+    position: fixed;
+    font-family: "Fragment Mono", monospace;
+    font-weight: 400;
+    font-size: 12pt;
+    color: #000;
+    z-index: 10;
+    pointer-events: none;
+
+    left: 50%;
+    bottom: 40px;
+    transform: translateX(-50%);
+}
+
+.mobile-break {
+    display: none;
+}
+
+@media (max-width: 600px) {
+
+    #under-construction {
+        left: auto;
+        right: 20px;
+        bottom: auto;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .mobile-break {
+        display: inline;
+    }
+
+}
+
