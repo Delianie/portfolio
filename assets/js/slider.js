@@ -157,7 +157,7 @@ const slider = {
     animate() {
 
         this.position += this.velocity;
-        this.velocity *= 0.9;
+        this.velocity *= 0.955;
 
         if (this.setSize > 0) {
 
@@ -223,7 +223,7 @@ const slider = {
 
             const now = performance.now();
             const dt = now - lastTime;
-            const delta = lastCoord - coord;
+            const delta = (lastCoord - coord) * 1.6;
 
             this.position += delta;
 
@@ -238,7 +238,7 @@ const slider = {
         const up = () => {
             if (!dragging) return;
             dragging = false;
-            this.velocity = flingVelocity * 1.4;
+            this.velocity = flingVelocity * 1.8;
         };
 
         document.addEventListener("touchstart", e => {
