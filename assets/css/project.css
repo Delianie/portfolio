@@ -1,0 +1,231 @@
+/* ============================================================
+   RESET
+============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============================================================
+   DESIGN SYSTEM
+============================================================ */
+
+:root {
+
+    /* Spacing */
+    --space-xs: 20px;
+    --space-s: 40px;
+    --space-l: 80px;
+
+    /* Grid */
+    --columns: 10;
+    --grid-gap: 20px;
+
+    /* Colors */
+    --color-bg: #ffffff;
+    --color-text: #000000;
+
+    /* Typography */
+    --font-family: "Fragment Mono", monospace;
+    --font-body: 14px;
+    --font-small: 11px;
+
+    --line-body: 130%;
+    --line-small: 120%;
+}
+
+/* ============================================================
+   GLOBAL
+============================================================ */
+
+body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-family);
+    font-size: var(--font-body);
+    font-weight: 400;
+    line-height: var(--line-body);
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+video {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+
+
+/* ============================================================
+   PROJECT LAYOUT
+============================================================ */
+
+.project-page {
+    min-height: 100vh;
+    padding: var(--space-l);
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-l);
+}
+
+.home-button {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-text);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+/* ============================================================
+   CONTENT
+============================================================ */
+
+.project-content {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: var(--grid-gap);
+    align-items: start;
+}
+
+/* ============================================================
+   SIDEBAR
+============================================================ */
+
+.project-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.project-title {
+    font-size: 2rem;
+    line-height: 1.1;
+}
+
+.project-description {
+    white-space: pre-line;
+}
+
+.project-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: var(--font-small);
+    line-height: 1.5;
+}
+
+.project-type {
+    text-transform: uppercase;
+}
+
+.project-credits {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.project-copyright {
+    margin-top: 12px;
+}
+
+/* ============================================================
+   GALLERY
+============================================================ */
+
+.project-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--grid-gap);
+    align-items: start;
+}
+
+.gallery-item {
+    width: 100%;
+    display: block;
+}
+
+/* ============================================================
+   CONTACT
+============================================================ */
+
+.project-contact {
+    margin-top: var(--space-l);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+
+.project-footer {
+    margin-top: var(--space-l);
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media (max-width: 900px) {
+
+    :root {
+        --space-l: 20px;
+    }
+
+    .project-page {
+        padding: var(--space-l);
+    }
+
+    .project-header {
+        margin-bottom: 40px;
+    }
+
+    .navigation {
+        gap: 20px;
+    }
+
+    .project-content {
+        grid-template-columns: 1fr;
+    }
+
+    .project-gallery {
+        grid-template-columns: 1fr;
+    }
+
+}
