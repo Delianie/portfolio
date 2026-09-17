@@ -1,47 +1,98 @@
-console.log("PRELOADER: Datei wurde erfolgreich geladen!");
-document.addEventListener("DOMContentLoaded", () => {
-  const preloader = document.getElementById("preloader");
-  const counter = document.getElementById("counter");
+/* ============================================================
+   PRELOADER
+============================================================ */
 
-  const images = document.querySelectorAll("img");
-  let totalImages = images.length;
-  let loadedImages = 0;
+window.Preloader = (() => {
 
-  function updateCounter() {
-    let percent = Math.round((loadedImages / totalImages) * 100);
-    counter.textContent = percent + "/100";
-  }
+    function buildList(projects) {
 
-  if (totalImages === 0) {
-    counter.textContent = "100/100";
-    hidePreloader();
-    return;
-  }
+        return projects
+            .filter(project => project.slider)
+            .map(project => ({
+                slug: project.slug,
+                file: project.slider,
+                src: `media/${project.slug}/${project.slider}`
+            }));
 
-  images.forEach(img => {
-    const imageClone = new Image();
-    imageClone.src = img.src;
+    }
 
-    imageClone.onload = () => {
-      loadedImages++;
-      updateCounter();
-      if (loadedImages === totalImages) hidePreloader();
-    };
+    function preloadImage(item) {
 
-    imageClone.onerror = () => {
-      loadedImages++;
-      updateCounter();
-      if (loadedImages === totalImages) hidePreloader();
-    };
-  });
+        return new Promise(resolve => {
 
-  function hidePreloader() {
-    setTimeout(() => {
-      preloader.style.opacity = "0";
-      preloader.style.transition = "opacity 0.5s";
-      setTimeout(() => {
-        preloader.style.display = "none";
-      }, 500);
-    }, 300);
-  }
-});
+            const img = new Image();
+
+            img.onload = () => resolve(item);
+            img.onerror = () => resolve(item);
+
+            img.src = item.src;
+
+        });
+
+    }
+
+    function appendLine(tree, item, isLast) {
+
+        const branch = isLast ? "└── " : "├── ";
+
+        const line = document.createElement("div");
+        line.className = "preloader-line";
+        line.textContent = `${branch}${item.slug}/${item.file}`;
+
+        tree.appendChild(line);
+
+    }
+
+    function updatePercent(percentEl, loaded, total) {
+
+        const percent = Math.round((loaded / total) * 100);
+        percentEl.textContent = `${percent}%`;
+
+    }
+
+    function hide(preloader) {
+
+        preloader.classList.add("is-hidden");
+
+        setTimeout(() => {
+            preloader.remove();
+        }, 600);
+
+    }
+
+    async function run(projects) {
+
+        const preloader = document.getElementById("preloader");
+        if (!preloader) return;
+
+        const tree = document.getElementById("preloader-tree");
+        const percentEl = document.getElementById("preloader-percent");
+
+        const items = buildList(projects);
+        const total = items.length;
+
+        if (total === 0) {
+            hide(preloader);
+            return;
+        }
+
+        const pending = items.map(preloadImage);
+
+        for (let i = 0; i < pending.length; i++) {
+
+            await pending[i];
+
+            if (tree) appendLine(tree, items[i], i === items.length - 1);
+            if (percentEl) updatePercent(percentEl, i + 1, total);
+
+        }
+
+        await new Promise(resolve => setTimeout(resolve, 250));
+
+        hide(preloader);
+
+    }
+
+    return { run };
+
+})();

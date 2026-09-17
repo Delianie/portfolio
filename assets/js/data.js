@@ -5,5 +5,11 @@ export async function loadProjects() {
         throw new Error("Could not load projects.json");
     }
 
-    return await response.json();
+    const projects = await response.json();
+
+    if (window.Preloader) {
+        await window.Preloader.run(projects);
+    }
+
+    return projects;
 }
