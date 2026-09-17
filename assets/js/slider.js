@@ -64,6 +64,7 @@ const slider = {
 
     setSize: 0,
     initialized: false,
+    lastFrameTime: 0,
 
     init(track) {
 
@@ -156,8 +157,14 @@ const slider = {
 
     animate() {
 
-        this.position += this.velocity;
-        this.velocity *= 0.985;
+        const now = performance.now();
+        const frames = this.lastFrameTime
+            ? Math.min((now - this.lastFrameTime) / 16.67, 4)
+            : 1;
+        this.lastFrameTime = now;
+
+        this.position += this.velocity * frames;
+        this.velocity *= Math.pow(0.985, frames);
 
         if (this.setSize > 0) {
 
@@ -171,12 +178,14 @@ const slider = {
 
         }
 
+        const roundedPosition = Math.round(this.position);
+
         if (this.direction === "horizontal") {
             this.track.style.transform =
-                `translate3d(${-this.position}px,0,0)`;
+                `translate3d(${-roundedPosition}px,0,0)`;
         } else {
             this.track.style.transform =
-                `translate3d(0,${-this.position}px,0)`;
+                `translate3d(0,${-roundedPosition}px,0)`;
         }
 
         requestAnimationFrame(() => this.animate());
@@ -187,10 +196,21 @@ const slider = {
 
         document.addEventListener("wheel", e => {
 
+            let deltaX = e.deltaX;
+            let deltaY = e.deltaY;
+
+            if (e.deltaMode === 1) {
+                deltaX *= 16;
+                deltaY *= 16;
+            } else if (e.deltaMode === 2) {
+                deltaX *= window.innerWidth;
+                deltaY *= window.innerHeight;
+            }
+
             const delta =
                 this.direction === "horizontal"
-                    ? (Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY)
-                    : e.deltaY;
+                    ? (Math.abs(deltaX) > Math.abs(deltaY) ? deltaX : deltaY)
+                    : deltaY;
 
             this.velocity += delta * 0.6;
 
