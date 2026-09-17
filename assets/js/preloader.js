@@ -87,19 +87,33 @@ window.Preloader = (() => {
         const pending = items.map(preloadImage);
 
         const staggerMs = 200;
+        const maxWaitMs = 8000;
         const startTime = performance.now();
+        const deadline = startTime + maxWaitMs;
 
         for (let i = 0; i < pending.length; i++) {
 
             const targetTime = startTime + staggerMs * (i + 1);
 
-            await Promise.all([
-                pending[i],
-                waitUntil(targetTime)
+            await Promise.race([
+                Promise.all([pending[i], waitUntil(targetTime)]),
+                waitUntil(deadline)
             ]);
 
             if (tree) appendLine(tree, items[i], i === items.length - 1);
             if (percentEl) updatePercent(percentEl, i + 1, total);
+
+            if (performance.now() >= deadline) {
+
+                for (let j = i + 1; j < items.length; j++) {
+                    if (tree) appendLine(tree, items[j], j === items.length - 1);
+                }
+
+                if (percentEl) updatePercent(percentEl, total, total);
+
+                break;
+
+            }
 
         }
 
