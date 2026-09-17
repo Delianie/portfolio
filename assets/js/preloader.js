@@ -37,9 +37,17 @@ window.Preloader = (() => {
 
         const line = document.createElement("div");
         line.className = "preloader-line";
-        line.textContent = `${branch}${item.slug}/${item.file}`;
+        line.textContent = `${branch}${item.slug}`;
 
         tree.appendChild(line);
+
+    }
+
+    function waitUntil(time) {
+
+        return new Promise(resolve => {
+            setTimeout(resolve, Math.max(0, time - performance.now()));
+        });
 
     }
 
@@ -78,9 +86,17 @@ window.Preloader = (() => {
 
         const pending = items.map(preloadImage);
 
+        const staggerMs = 200;
+        const startTime = performance.now();
+
         for (let i = 0; i < pending.length; i++) {
 
-            await pending[i];
+            const targetTime = startTime + staggerMs * (i + 1);
+
+            await Promise.all([
+                pending[i],
+                waitUntil(targetTime)
+            ]);
 
             if (tree) appendLine(tree, items[i], i === items.length - 1);
             if (percentEl) updatePercent(percentEl, i + 1, total);
