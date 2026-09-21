@@ -130,7 +130,9 @@ body {
     font-size: 12pt;
     color: #000;
     z-index: 10;
-    pointer-events: none;
+    pointer-events: auto;
+    text-decoration: none;
+    cursor: pointer;
 
     left: 50%;
     bottom: 40px;

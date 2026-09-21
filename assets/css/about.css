@@ -1,0 +1,177 @@
+/* ============================================================
+   RESET
+============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============================================================
+   DESIGN SYSTEM
+============================================================ */
+
+:root {
+    --ink: #111;
+    --bg: #fff;
+    --font-ui: "Fragment Mono", monospace;
+    --font-text: "JetBrains Mono", monospace;
+}
+
+html,
+body {
+    background: var(--bg);
+}
+
+body {
+    color: var(--ink);
+    font-size: 14px;
+}
+
+a {
+    color: inherit;
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 25px 10px;
+    font-family: var(--font-ui);
+    line-height: 1.6;
+    white-space: nowrap;
+    background: var(--bg);
+}
+
+.site-header a,
+.site-header button {
+    color: inherit;
+    font: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.blink-cursor {
+    animation: blink-cursor 1s step-end infinite;
+}
+
+@keyframes blink-cursor {
+    0%,
+    50% {
+        opacity: 1;
+    }
+    50.01%,
+    100% {
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .blink-cursor {
+        animation: none;
+    }
+}
+
+/* ============================================================
+   CONTENT
+============================================================ */
+
+.about {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 25px 25px 65px;
+}
+
+/* ============================================================
+   TEXT
+============================================================ */
+
+.about__text {
+    font-family: var(--font-text);
+    line-height: 1.32;
+    word-break: break-word;
+}
+
+.about__text p {
+    margin: 0;
+}
+
+.about__text .spacer {
+    height: 1.32em;
+}
+
+/* ============================================================
+   GALLERY
+============================================================ */
+
+.about__gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+}
+
+.about__gallery img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 167 / 209;
+    object-fit: cover;
+}
+
+/* ============================================================
+   TREE
+============================================================ */
+
+.about-tree {
+    font-family: var(--font-text);
+    line-height: 1.6;
+    background: var(--bg);
+    overflow: clip;
+    word-break: break-word;
+}
+
+.tree-row {
+    display: flex;
+    margin-bottom: -4px;
+}
+
+.tree-prefix {
+    flex-shrink: 0;
+    white-space: pre;
+}
+
+.tree-label {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.tree-section {
+    margin-bottom: -4px;
+    overflow: clip;
+}
+
+.tree-section > .tree-row:last-child {
+    margin-bottom: 0;
+}
+
+.tree-section:last-child {
+    margin-bottom: 0;
+}
+
+.about-tree a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.about-tree a:hover {
+    text-decoration: underline;
+}
