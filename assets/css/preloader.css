@@ -21,59 +21,14 @@
 
     padding: 40px;
     overflow: hidden;
-
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 
-#preloader.is-hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-#preloader-tree {
+.preloader-lines {
     white-space: pre;
-    margin: 0 0 12px 0;
-    max-height: 70vh;
-    overflow: hidden;
 }
 
 .preloader-line {
-    opacity: 0;
-    transform: translateY(4px);
-    animation: preloader-line-in 0.25s ease forwards;
-}
-
-@keyframes preloader-line-in {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-#preloader-status {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-#preloader-status::after {
-    content: "";
-    width: 8px;
-    height: 14px;
-    background: #000;
-    animation: preloader-cursor-blink 1s steps(1, start) infinite;
-}
-
-@keyframes preloader-cursor-blink {
-    0%, 50% {
-        opacity: 1;
-    }
-    50.01%, 100% {
-        opacity: 0;
-    }
+    min-height: 1.5em;
 }
 
 @media (max-width: 600px) {

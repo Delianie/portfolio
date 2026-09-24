@@ -1,7 +1,6 @@
 import { loadProjects } from "./data.js";
 import { getCurrentLang } from "./language.js";
-
-const PROJECT_LINKS_ENABLED = false;
+import { PROJECT_LINKS_ENABLED } from "./config.js";
 
 export async function initSlider() {
     const projects = await loadProjects();

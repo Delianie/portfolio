@@ -1,0 +1,39 @@
+/* ============================================================
+   FULLSCREEN MENU
+============================================================ */
+
+html.menu-open,
+html.menu-open body {
+    overflow: hidden;
+}
+
+.site-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 90;
+    overflow-y: auto;
+    background: var(--bg, #fff);
+    color: var(--ink, #111);
+}
+
+.site-menu[hidden] {
+    display: none;
+}
+
+.site-menu:focus {
+    outline: none;
+}
+
+.site-menu__tree {
+    padding: 25px;
+    font-family: "Fragment Mono", monospace;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.site-menu__disabled {
+    cursor: default;
+}

@@ -1,0 +1,46 @@
+/* ============================================================
+   HEADER (shared across pages)
+============================================================ */
+
+:root {
+    --ink: #111;
+    --bg: #fff;
+    --font-ui: "Fragment Mono", monospace;
+}
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 25px 10px;
+    font-family: var(--font-ui);
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: nowrap;
+    background: var(--bg);
+    color: var(--ink);
+    position: relative;
+    z-index: 100;
+}
+
+.site-header a,
+.site-header button {
+    color: inherit;
+    font: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* .blink-cursor lives in terminal-type.css, shared with the
+   preloader and menu typing cursor. */
+
+/* Desktop: auf den 80px-Rand des 10-Spalten-Grids ausrichten */
+@media (min-width: 1024px) {
+    .site-header {
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+}

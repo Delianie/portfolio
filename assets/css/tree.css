@@ -1,0 +1,43 @@
+/* ============================================================
+   TREE (shared terminal-tree list primitives)
+   Used by the About page background tree and the fullscreen
+   menu tree. Font, color and spacing are set by the consuming
+   context (.about-tree / .site-menu__tree).
+============================================================ */
+
+.tree-row {
+    display: flex;
+    margin-bottom: -4px;
+}
+
+.tree-prefix {
+    flex-shrink: 0;
+    white-space: pre;
+}
+
+.tree-label {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.tree-section {
+    margin-bottom: -4px;
+    overflow: clip;
+}
+
+.tree-section > .tree-row:last-child {
+    margin-bottom: 0;
+}
+
+.tree-section:last-child {
+    margin-bottom: 0;
+}
+
+.tree-row a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.tree-row a:hover {
+    text-decoration: underline;
+}

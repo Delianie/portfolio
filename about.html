@@ -30,7 +30,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
 
     <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/terminal-type.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/tree.css">
     <link rel="stylesheet" href="assets/css/about.css">
+    <link rel="stylesheet" href="assets/css/menu.css">
 
 </head>
 
@@ -38,7 +42,7 @@
 
     <header class="site-header">
         <a href="index.html" class="site-header__logo">[dn]</a>
-        <button type="button" class="site-header__menu">//menu<span class="blink-cursor" aria-hidden="true">_</span></button>
+        <button type="button" class="site-header__menu" aria-expanded="false" aria-controls="site-menu">//<span class="site-header__menu-label">menu</span><span class="blink-cursor" aria-hidden="true">_</span></button>
     </header>
 
     <main class="about">
@@ -103,6 +107,8 @@
         </div>
 
     </main>
+
+    <script type="module" src="assets/js/about.js"></script>
 
 </body>
 

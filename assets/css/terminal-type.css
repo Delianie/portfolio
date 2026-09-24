@@ -1,0 +1,26 @@
+/* ============================================================
+   TERMINAL-TYPE
+   Shared blinking cursor: the header's idle "_" cursor, the
+   preloader's and the menu's typing cursor (assets/js/terminal-type.js).
+============================================================ */
+
+.blink-cursor {
+    animation: blink-cursor 1s step-end infinite;
+}
+
+@keyframes blink-cursor {
+    0%,
+    50% {
+        opacity: 1;
+    }
+    50.01%,
+    100% {
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .blink-cursor {
+        animation: none;
+    }
+}
