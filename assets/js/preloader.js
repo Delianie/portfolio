@@ -11,16 +11,8 @@ window.Preloader = (() => {
     const STAGGER_MS = 200;
     const MAX_WAIT_MS = 8000;
 
-    function buildList(projects) {
-
-        return projects
-            .filter(project => project.slider)
-            .map(project => ({
-                slug: project.slug,
-                file: project.slider,
-                src: `media/${project.slug}/${project.slider}`
-            }));
-
+    function buildList(sliderImages) {
+        return sliderImages.map(image => ({ src: image.src }));
     }
 
     function preloadImage(item) {
@@ -123,7 +115,7 @@ window.Preloader = (() => {
         preloader.remove();
     }
 
-    async function run(projects) {
+    async function run(sliderImages) {
 
         const preloader = document.getElementById("preloader");
         if (!preloader) return;
@@ -131,7 +123,7 @@ window.Preloader = (() => {
         const container = document.getElementById("preloader-lines");
         if (!container) return;
 
-        const items = buildList(projects);
+        const items = buildList(sliderImages);
         const total = items.length;
 
         const line1Text = "loading delianiederberger.ch";

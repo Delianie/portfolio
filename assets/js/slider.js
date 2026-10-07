@@ -1,43 +1,46 @@
-import { loadProjects } from "./data.js";
-import { getCurrentLang } from "./language.js";
+import { loadProjects, SLIDER_IMAGES } from "./data.js";
 import { PROJECT_LINKS_ENABLED } from "./config.js";
 
 export async function initSlider() {
-    const projects = await loadProjects();
+    await loadProjects();
     const track = document.getElementById("track");
     if (!track) return;
 
-    renderSlides(projects, track);
+    renderSlides(SLIDER_IMAGES, track);
     slider.init(track);
 
     document.addEventListener("languageChanged", () => {
-        renderSlides(projects, track);
         slider.updateLayout();
     });
 }
 
-function renderSlides(projects, track) {
+function renderSlides(images, track) {
     track.innerHTML = "";
 
-    const lang = getCurrentLang();
     const copies = 3;
 
     for (let c = 0; c < copies; c++) {
 
-        projects.forEach(project => {
+        images.forEach(sliderImage => {
 
             const slide = document.createElement("a");
             slide.className = "media-wrapper";
-            if (PROJECT_LINKS_ENABLED) {
-                slide.href = `project.html?slug=${project.slug}`;
+            slide.dataset.format = sliderImage.format;
+            if (PROJECT_LINKS_ENABLED && sliderImage.projectSlug) {
+                slide.href = `project.html?slug=${sliderImage.projectSlug}`;
             } else {
                 slide.href = "#";
                 slide.addEventListener("click", e => e.preventDefault());
             }
 
             const image = document.createElement("img");
-            image.src = `media/${project.slug}/${project.slider}`;
-            image.alt = project.title[lang];
+            image.src = sliderImage.src;
+            image.alt = sliderImage.src
+                .split("/")
+                .pop()
+                .replace(/^\d+_[A-D]_/, "")
+                .replace(/\.jpg$/i, "")
+                .replaceAll("-", " ");
 
             slide.appendChild(image);
 
@@ -91,8 +94,10 @@ const slider = {
 
         this.direction = isPortraitMobile ? "vertical" : "horizontal";
 
-        this.track.classList.remove("horizontal", "vertical");
+        this.track.classList.remove("horizontal", "vertical", "mobile-portrait");
         this.track.classList.add(this.direction);
+        this.track.classList.toggle("mobile-portrait", isPortraitMobile);
+        document.body.classList.toggle("mobile-portrait", isPortraitMobile);
 
         this.track.style.flexDirection =
             this.direction === "vertical" ? "column" : "row";
@@ -104,6 +109,10 @@ const slider = {
             document.documentElement.style.setProperty(
                 "--slot-height",
                 `${slotHeight}px`
+            );
+            document.documentElement.style.setProperty(
+                "--column-width",
+                `${width / 12}px`
             );
 
         } else {
