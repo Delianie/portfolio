@@ -77,6 +77,9 @@ const slider = {
         window.addEventListener("resize", () => {
             this.updateLayout();
         });
+        window.addEventListener("orientationchange", () => {
+            this.updateLayout();
+        });
 
         this.addWheel();
         this.addDrag();
@@ -103,15 +106,8 @@ const slider = {
             this.direction === "vertical" ? "column" : "row";
 
         if (this.direction === "vertical") {
-
-            const slotHeight = height / 4;
-
             document.documentElement.style.setProperty(
-                "--slot-height",
-                `${slotHeight}px`
-            );
-            document.documentElement.style.setProperty(
-                "--column-width",
+                "--col",
                 `${width / 12}px`
             );
 
@@ -144,6 +140,7 @@ const slider = {
 
         const children = Array.from(this.track.children);
         const perSet = children.length / 3;
+        const previousSetSize = this.setSize;
 
         let size = 0;
 
@@ -151,14 +148,19 @@ const slider = {
             size +=
                 this.direction === "horizontal"
                     ? children[i].offsetWidth
-                    : children[i].offsetHeight;
+                    : children[i].getBoundingClientRect().height;
         }
 
         this.setSize = size;
 
-        if (!this.initialized && size > 0) {
-            this.position = size;
-            this.initialized = true;
+        if (size > 0) {
+            if (!this.initialized) {
+                this.position = size;
+                this.initialized = true;
+            } else if (previousSetSize > 0) {
+                const offset = this.position - previousSetSize;
+                this.position = size + ((offset % size) + size) % size;
+            }
         }
 
     },

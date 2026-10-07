@@ -70,13 +70,14 @@ body {
 }
 
 .track.mobile-portrait .media-wrapper {
-    height: var(--slot-height);
+    height: calc(var(--col) * 6.5);
 }
 
 .track.mobile-portrait .media-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    display: block;
 }
 
 body.mobile-portrait::before {
@@ -86,9 +87,9 @@ body.mobile-portrait::before {
     z-index: 0;
     pointer-events: none;
     background-image:
-        linear-gradient(to right, rgba(118, 118, 118, 0.10) 1px, transparent 1px),
-        linear-gradient(to left, rgba(118, 118, 118, 0.10) 1px, transparent 1px);
-    background-size: var(--column-width) 100%, 100% 100%;
+        linear-gradient(to right, rgba(118, 118, 118, 0.03) 1px, transparent 1px),
+        linear-gradient(to left, rgba(118, 118, 118, 0.03) 1px, transparent 1px);
+    background-size: var(--col) 100%, 100% 100%;
     background-repeat: repeat-x, no-repeat;
 }
 
@@ -103,19 +104,23 @@ body.mobile-portrait .track {
 }
 
 body.mobile-portrait .track .media-wrapper[data-format="A"] {
-    width: calc(var(--column-width) * 9);
+    width: calc(var(--col) * 9);
+    aspect-ratio: 9 / 6.5;
 }
 
 body.mobile-portrait .track .media-wrapper[data-format="B"] {
-    width: calc(var(--column-width) * 8);
+    width: calc(var(--col) * 8);
+    aspect-ratio: 8 / 6.5;
 }
 
 body.mobile-portrait .track .media-wrapper[data-format="C"] {
-    width: calc(var(--column-width) * 5);
+    width: calc(var(--col) * 5);
+    aspect-ratio: 5 / 6.5;
 }
 
 body.mobile-portrait .track .media-wrapper[data-format="D"] {
-    width: calc(var(--column-width) * 4);
+    width: calc(var(--col) * 4);
+    aspect-ratio: 4 / 6.5;
 }
 
 .media-wrapper:hover {
