@@ -6,18 +6,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Delia Niederberger – Graphic Design Portfolio</title>
+    <title>Projekte – Delia Niederberger</title>
 
     <meta name="description" content="Graphic design portfolio by Delia Niederberger.">
     <meta name="author" content="Delia Niederberger">
     <meta name="keywords" content="Delia Niederberger, Graphic Design, Portfolio, Branding, Editorial Design, Motion Design">
     <meta name="theme-color" content="#ffffff">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="noindex, follow">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Delia Niederberger – Graphic Design Portfolio">
+    <meta property="og:title" content="Projekte – Delia Niederberger">
     <meta property="og:description" content="Graphic design portfolio by Delia Niederberger.">
-    <meta property="og:url" content="https://delianiederberger.ch">
+    <meta property="og:url" content="https://delianiederberger.ch/project.html">
     <meta property="og:type" content="website">
 
     <!-- Favicons -->
@@ -27,105 +27,68 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
 
     <!-- CSS -->
-   <link rel="stylesheet" href="assets/css/typography.css">
+    <link rel="stylesheet" href="assets/css/terminal-type.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/tree.css">
     <link rel="stylesheet" href="assets/css/project.css">
-    <link rel="stylesheet" href="assets/css/modes.css">
+    <link rel="stylesheet" href="assets/css/menu.css">
+
 </head>
 
 <body>
 
-    <div class="project-page">
+    <header class="site-header">
+        <a href="index.html" class="site-header__logo">[dn]</a>
+        <button type="button" class="site-header__menu" aria-expanded="false" aria-controls="site-menu">//<span class="site-header__menu-label">menu</span><span class="blink-cursor" aria-hidden="true">_</span></button>
+    </header>
 
-        <!-- HEADER -->
+    <!-- Platzhalter-Inhalt. Später füllt renderProject(slug) in project.js diese Stelle aus der Tabelle. -->
+    <main class="project" id="project" data-slug="platzhalter">
 
-        <header class="project-header">
-
-            <a href="index.html" class="home-button"></a>
-
-            <nav class="navigation">
-
-                <button id="lang-switch">DE/EN</button>
-
-                <button id="mode-switch">MODE</button>
-
-                <a href="about.html">ABOUT</a>
-
-            </nav>
-
-        </header>
-
-
-        <!-- CONTENT -->
-
-        <main class="project-content">
-
-            <!-- Linke Spalte -->
-
-            <aside class="project-sidebar">
-
-                <h1 id="project-title" class="project-title"></h1>
-
-                <div id="project-description" class="project-description"></div>
-
-                <div class="project-meta">
-
-                    <div id="project-year"></div>
-
-                    <div id="project-client"></div>
-
-                    <div id="project-type" class="project-type"></div>
-
-                    <div id="project-credits" class="project-credits"></div>
-
-                    <div id="project-copyright" class="project-copyright"></div>
-
-                </div>
-
-            </aside>
-
-
-            <!-- Rechte Spalte -->
-
-            <section
-                class="project-gallery"
-                id="project-gallery">
-
-            </section>
-
-        </main>
-
-
-        <!-- CONTACT -->
-
-        <section class="project-contact">
-
-            <h2>Let's work together.</h2>
-
-            <a href="mailto:delianiederberger@gmail.com">
-                delianiederberger@gmail.com
-            </a>
-
-            <a href="https://www.instagram.com/d.nie.graphic" target="_blank" rel="noopener noreferrer">
-                @d.nie.graphic
-            </a>
-
+        <section class="project__intro">
+            <h1 class="project__label"><span class="project__label-prefix" aria-hidden="true">┌─ </span>Projektseiten//</h1>
+            <div class="project__text">
+                <p>Du bist hier ein bisschen zu früh.<br>Diese Seite ist momentan noch ein Platzhalter. Ich bin gerade dabei, meine Projekte aufzubereiten und nach und nach mehr über die Ideen, Prozesse und kleinen Details dahinter zu zeigen.</p>
+                <p>Schau später nochmal vorbei. :)</p>
+            </div>
         </section>
 
+        <div class="project__gallery">
+            <img src="media/platzhalter/platzhalterbild_01.png" alt="" width="1080" height="1352" decoding="async">
+            <img src="media/platzhalter/platzhalterbild_02.png" alt="" width="1080" height="1352" decoding="async">
+        </div>
 
-        <!-- FOOTER -->
+        <div class="project-tree">
+            <div class="tree-section">
+                <div class="tree-row"><span class="tree-prefix" aria-hidden="true">└─ </span><span class="tree-label">Contact</span></div>
+                <div class="tree-row"><span class="tree-prefix" aria-hidden="true">   ├─ </span><span class="tree-label"><a href="https://www.delianiederberger.ch">www.delianiederberger.ch</a></span></div>
+                <div class="tree-row"><span class="tree-prefix" aria-hidden="true">   ├─ </span><span class="tree-label"><a href="mailto:dn@delianiederberger.ch">dn@delianiederberger.ch</a></span></div>
+                <div class="tree-row"><span class="tree-prefix" aria-hidden="true">   └─ </span><span class="tree-label"><a href="https://www.instagram.com/d.nie.graphic" target="_blank" rel="noopener noreferrer">@d.nie.graphic</a></span></div>
+            </div>
+        </div>
 
-        <footer class="project-footer">
+    </main>
 
-            <p>© 2026 Delia Niederberger</p>
+    <footer class="site-footer">
 
-        </footer>
+        <div class="site-footer__game">
+            <p class="site-footer__score">Score <span data-footer-score>0000</span></p>
+            <canvas data-footer-game tabindex="0" role="img"
+                    aria-label="Ein Pixel-Schaf läuft über Hügel und jagt einem Schmetterling nach. Tippen lässt es springen."></canvas>
+        </div>
 
-    </div>
+        <div class="site-footer__note">
+            <p>Feel free to judge.</p>
+            <p class="site-footer__copy">© 2026 Delia Niederberger</p>
+        </div>
+
+    </footer>
 
     <script type="module" src="assets/js/project.js"></script>
+    <script src="assets/js/footer-game.js" defer></script>
 
 </body>
 
