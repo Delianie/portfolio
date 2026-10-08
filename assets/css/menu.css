@@ -29,7 +29,8 @@ html.menu-open body {
 
 .site-menu__tree {
     padding: 25px;
-    font-family: "Fragment Mono", monospace;
+    /* Gleiche Schrift wie die Trees auf About- und Projektseite */
+    font-family: "JetBrains Mono", monospace;
     font-size: 14px;
     line-height: 1.6;
 }
