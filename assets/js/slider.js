@@ -1,5 +1,12 @@
 import { loadProjects, SLIDER_IMAGES } from "./data.js";
-import { PROJECT_LINKS_ENABLED } from "./config.js";
+import { SLIDER_LINKS_ENABLED } from "./config.js";
+
+// Slug für Bilder ohne eigenen projectSlug in data.js.
+// Später pro Bild in SLIDER_IMAGES einen echten Slug eintragen.
+const DEFAULT_SLUG = "platzhalter";
+
+// Ab so vielen Pixeln Bewegung gilt eine Geste als Ziehen, nicht als Klick.
+const CLICK_MAX_MOVE = 6;
 
 export async function initSlider() {
     await loadProjects();
@@ -26,8 +33,16 @@ function renderSlides(images, track) {
             const slide = document.createElement("a");
             slide.className = "media-wrapper";
             slide.dataset.format = sliderImage.format;
-            if (PROJECT_LINKS_ENABLED && sliderImage.projectSlug) {
-                slide.href = `project.html?slug=${sliderImage.projectSlug}`;
+            if (SLIDER_LINKS_ENABLED) {
+                const slug = sliderImage.projectSlug || DEFAULT_SLUG;
+                slide.href = `project.html?slug=${encodeURIComponent(slug)}`;
+                slide.draggable = false;
+                slide.addEventListener("click", e => {
+                    // Nach dem Ziehen keinen Link öffnen (Tastatur-Klicks haben detail 0)
+                    if (e.detail > 0 && slider.dragDistance > CLICK_MAX_MOVE) {
+                        e.preventDefault();
+                    }
+                });
             } else {
                 slide.href = "#";
                 slide.addEventListener("click", e => e.preventDefault());
@@ -61,6 +76,9 @@ const slider = {
 
     position: 0,
     velocity: 0,
+
+    // Grösste Bewegung (px) seit dem letzten Drücken, für die Klick-Erkennung
+    dragDistance: 0,
 
     direction: "horizontal",
 
@@ -231,6 +249,7 @@ const slider = {
     addDrag() {
 
         let dragging = false;
+        let startCoord = 0;
         let lastCoord = 0;
         let lastTime = 0;
         let flingVelocity = 0;
@@ -242,6 +261,8 @@ const slider = {
 
         const down = coord => {
             dragging = true;
+            startCoord = coord;
+            this.dragDistance = 0;
             lastCoord = coord;
             lastTime = performance.now();
             flingVelocity = 0;
@@ -250,6 +271,8 @@ const slider = {
 
         const move = coord => {
             if (!dragging) return;
+
+            this.dragDistance = Math.max(this.dragDistance, Math.abs(coord - startCoord));
 
             const now = performance.now();
             const dt = now - lastTime;
